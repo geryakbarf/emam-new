@@ -1,0 +1,28 @@
+<div v-if="sideMenuIndex == 1">
+    <h3 class="mt-2">Update Soon</h3>
+    <div class="columns" style="margin: 10px 0;">
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label" for="filter">Filter</label>
+                <input class="form-input" id="filter" placeholder="filter..." type="text" v-model="filter">
+            </div>
+        </div>
+    </div>
+    <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+        <datatable :columns="ownerCols" :data="owner_update_soon" :filter="filter" class="table">
+            <template scope="{ row, column, index }">
+                <tr>
+                    <td class="text-center">{{ index + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.lastUpdate }}</td>
+                    <td>{{ row.nextUpdate }}</td>
+                    <td>{{ row.placeName }}</td>
+                    <td class="text-center">
+                        <a class="btn btn-primary my-2" v-bind:href="'/admin/owners/'+row._id+'/edit'">Update</a>
+                        <a class="btn my-2" v-on:click="sendWhatsapp(row.contactNumber,row.contactType)">Whatsapp</a>
+                    </td>
+                </tr>
+            </template>
+        </datatable>
+    </div>
+</div>

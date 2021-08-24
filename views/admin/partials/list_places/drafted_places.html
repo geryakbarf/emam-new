@@ -1,0 +1,31 @@
+<div v-if="sideMenuIndex == 1">
+<h3 class="mt-2">Drafted Places</h3>
+<div class="columns" style="margin: 10px 0;">
+    <div class="column col-2">
+        <div class="form-group">
+            <label class="form-label" for="filterdraft">Filter</label>
+            <input class="form-input" type="text" id="filterdraft" placeholder="filter..." v-model="filterdraft">
+        </div>
+    </div>
+</div>
+<div style="max-height: 400px;overflow-y: auto;overflow-x: hidden; margin-bottom: 20px">
+    <datatable :columns="placeCols" :data="places_draft" class="table" :filter="filterdraft">
+        <template scope="{ row, column, index }">
+            <tr>
+                <td class="text-center">{{ index + 1 }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.idx }}</td>
+                <td v-if="row.is_partner">Yes</td>
+                <td v-if="!row.is_partner">No</td>
+                <td v-if="row.is_sticker">Yes</td>
+                <td v-if="!row.is_sticker">No</td>
+                <td>{{ row.updatedAt }}</td>
+                <td class="text-center">
+                    <button class="btn btn-primary my-2" v-on:click="updateTime(row._id, row.name)">Update Time</button>
+                    <a v-bind:href="'/admin/places/'+row._id+'/edit'" class="btn my-2">Update</a>
+                </td>
+            </tr>
+        </template>
+    </datatable>
+</div>
+</div>

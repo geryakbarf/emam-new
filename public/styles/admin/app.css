@@ -1,0 +1,63 @@
+html, body{
+    height: 100%;
+}
+.adm-logo {
+    padding: 10px 0;
+    width: 50px;
+}
+
+/*.btn-emam-primary{*/
+/*    background-color: #e92737;*/
+/*    color: #FFF !important;*/
+/*    margin: 10px 5px;*/
+/*}*/
+
+.btn-upload{
+    padding: 0!important;
+    height: auto!important;
+}
+
+.btn-upload label{
+    padding: 8px;
+    cursor: pointer;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.upload-zone {
+    width: 100%;
+    height:300px;
+    border: 1px solid #000;
+    display: block;
+    overflow-y: auto;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+
+

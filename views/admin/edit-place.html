@@ -1,0 +1,36 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container">
+    <h1>Edit place</h1>
+    <div class="columns" id="form-place">
+        <div class="column col-2" style="border-right: 1px solid #eee;">
+            <%- include('./partials/place_form_nav.html') %>
+        </div>
+        <div class="column col-10">
+            <%- include('./partials/place_forms/general.html') %>
+            <%- include('./partials/place_forms/facilities.html') %>
+            <%- include('./partials/place_forms/operational_times.html') %>
+            <!-- <%- include('./partials/place_forms/banners.html') %> -->
+            <%- include('./partials/place_forms/payment_category.html') %>
+            <%- include('./partials/place_forms/cta.html') %>
+            <%- include('./partials/place_forms/qr.html') %>
+            <%- include('./partials/place_forms/menus.html') %>
+            <%- include('./partials/place_forms/galleries.html') %>
+            <%- include('./partials/place_forms/covid.html') %>
+            <%- include('./partials/place_forms/options.html') %>
+            <%- include('./partials/place_forms/descriptions.html') %>
+            <%- include('./partials/place_forms/owner.html') %>
+            <div style="clear: both;"></div>
+            <div style="float:right; margin-top: 10px;">
+                <button class="btn" v-on:click="onCancel()">Cancel</button>
+                <!-- <button class="btn" v-on:click="onSave(false)">Save</button> -->
+                <button class="btn" v-on:click="onSave(true)">Save & Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var placeId = '<%= id %>';
+</script>
+<%- include('./partials/footer.html') %>

@@ -1,0 +1,14 @@
+<ul class="nav">
+    <li v-bind:class="[isActiveSideMenu(0) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(0)">All Places ({{places.length}})</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(1) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(1)">Drafted Places ({{places_draft.length}})</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(2) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(2)">Published Places ({{places_publish.length}})</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(3) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(3)">Updated Places ({{places_updated.length}})</a>
+    </li>
+</ul>

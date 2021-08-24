@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="emam.id" />
+    <meta name="description" content="Bingung mau emam apa? #TanyaEmamAja" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="emam Indonesia" />
+    <meta property="og:description" content="Bingung mau emam apa? #TanyaEmamAja" />
+    <meta property="og:image" content="images/logo/logo.png" />
+    <meta property="og:site_name" content="emam Indonesia" />
+    <meta property="og:url" content="https://emam.id/" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Bingung mau emam apa? #TanyaEmamAja">
+    <meta name="twitter:title" content="emam Indonesia">
+    <meta name="twitter:image" content="images/logo/logo.png">
+    <meta name="keywords" content="Makanan, Food, Kuliner">
+
+    <title>
+        <%= locals.pageTitle %>
+    </title>
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- library style -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- library font -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Muli:400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <!-- icon -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.css"
+        integrity="sha512-pKdIPri9vb1aqcci9Rsl1xO7n74wHe5+RMcqRufN36EnXVtOsbct0VKDtBdhAnSCqZeny2jiZBSpXp0iDSzZ+Q=="
+        crossorigin="anonymous" />
+
+    <!-- style css -->
+    <link rel="stylesheet" href="/assets/styles/main-style.css">
+    <% if(locals.loadCSS){ %>
+        <% locals.loadCSS.forEach(e=>{ %>
+            <link rel="stylesheet" href="<%= e.src %>">
+            <% }) %>
+                <% } %>
+
+                    <!-- Global site tag (gtag.js) - Google Analytics -->
+                    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170625997-1"></script>
+                    <script>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { dataLayer.push(arguments); }
+                        gtag('js', new Date());
+
+                        gtag('config', 'UA-170625997-1');
+                    </script>
+
+                    <!-- Google Tag Manager -->
+                    <script>(function (w, d, s, l, i) {
+                            w[l] = w[l] || []; w[l].push({
+                                'gtm.start':
+                                    new Date().getTime(), event: 'gtm.js'
+                            }); var f = d.getElementsByTagName(s)[0],
+                                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+                        })(window, document, 'script', 'dataLayer', 'GTM-M3Z4GRJ');</script>
+                    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+    <div id="btntoTop" class="btn-to-top" style="display: none;">
+        <!-- <i class="fa fa-arrow-up"></i> -->
+        <img class="ic-arrow-up" src="/assets/images/icon/emam-host-arrow-up-red.svg"
+            style="width: 20px; height: 20px;"></img>
+    </div>

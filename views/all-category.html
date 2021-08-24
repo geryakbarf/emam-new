@@ -1,0 +1,30 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/top-nav.html') %>
+<main>
+    <div class="container-fluid">
+        <div class="pd-layout-section">
+            <section class="section-kategori row justify-content-center" style="padding: 10px 0;
+                            background-color: #fcfdfb;">
+                <div class="container">
+                    <h1 class="text-center mb-3">Explore Kategori</h1>
+                    <div class="row">
+                        <% if(locals.category){ %>
+                        <% for(idx of category){ %>
+                        <div class="col-md-3 col-6 card-container">
+                            <a href="/explore/category/<%= idx.name %>" style="text-decoration: none;">
+                                <div class="card-kategori my-2"
+                                     style="background-image: url('/assets/images/<%= idx.image %>');">
+                                    <h4 class="txt-kategori" style="color: #fff;"><%= idx.name %></h4>
+                                </div>
+                            </a>
+                        </div>
+                        <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+<!-- Footer -->
+<%- include('./partials/footer.html') %>

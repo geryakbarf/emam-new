@@ -1,0 +1,64 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/top-nav.html') %>
+
+<main>
+    <div class="container-fluid">
+        <div class="pd-layout-section">
+            <section class="section-tempatmakan row justify-content-center" id="detail-kategori">
+                <div class="container">
+                    <div class="row">
+                        <% if(locals.partner.places.length> 0){ %>
+                        <h1 style="width: 100%; text-align:center;">Explore partner - emam.id</h1>
+                        <% for(data of partner.places) { %>
+                        <% for(place of data){ %>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-1 card-container">
+                            <div class="card-layout">
+                                <div class="card-box">
+                                    <div class="img-box">
+                                        <div class="layout-btn-absolute">
+                                            <!-- <div class="btn-icon inline mx-1" style="cursor: pointer;">
+                                    <img src="/assets/images/icon/emam-host-save-default.svg"
+                                        alt="save button" id="save">
+                                </div> -->
+                                            <div class="btn-icon inline mx-1" style="cursor: pointer;">
+                                                <img alt="like button"
+                                                     data-is-liked="<%= place.is_liked %>"
+                                                     id="like"
+                                                     onclick="onWistListClicked('<%= place._id %>',this)"
+                                                     src="/assets/images/icon/emam-host-like-<%= place.is_liked? 'active': 'default' %>.svg">
+                                            </div>
+                                        </div>
+                                        <a href="/p/<%= place.slug %>">
+                                            <img alt="Photo Tempat <%= place.name %>"
+                                                 class="img-tempatmakan"
+                                                 src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>"/>
+                                        </a>
+                                    </div>
+                                    <a href="/p/<%= place.slug %>">
+                                        <div class="card-body">
+                                            <h4 class="txt-h-nama-tempatmakan">
+                                                <%= place.name %>
+                                            </h4>
+                                            <p class="txt-alamat-tempatmakan">
+                                                <%= place.address %>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% } %>
+                        <% } else { %>
+                        <h2
+                                style="text-align: center;width: 100%; height: 300px; padding-top: 100px;">
+                            Belum ada partner untuk saat ini :(</h2>
+                        <% } %>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+<!-- Footer -->
+<%- include('./partials/footer.html') %>

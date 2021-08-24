@@ -1,0 +1,8 @@
+<div v-show="sideMenuIndex == 11">
+    <h1>Descriptions (Bio)</h1>
+    <div class="columns">
+        <div class="column col-10">
+                <tinymce v-if="isLoading == false" v-model="form.bio" :toolbar1="'undo redo | bold italic strikethrough underline'"></tinymce>
+        </div>
+    </div>
+</div>

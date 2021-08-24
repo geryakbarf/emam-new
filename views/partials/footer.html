@@ -1,0 +1,137 @@
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color pt-4 bg-red">
+    <div class="container text-center text-md-left text-white">
+        <div class="row text-center text-md-left mt-3 row-info-footer">
+            <div class="col-xl-3 col-lg-3 col-md-12 mx-auto mt-3 text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <img class="footer-img" src="/assets/images/logo-emam-invert-small.png" alt="Logo Emam">
+                        <div class="row justify-content-center mt-4">
+                            <a href="https://www.instagram.com/emam.id/" target="_blank">
+                                <img class="ic-social-media mb-2" src="/assets/images/icon/emam-instagram-white.svg"
+                                    alt="">
+                            </a>
+                            <a href="https://www.instagram.com/emam.id/" target="_blank">
+                                <img class="ic-social-media" src="/assets/images/icon/emam-instagram-white.svg"
+                                    alt="Instagram emam" style="max-width: 40px; margin: 0 10px; width: 100%;">
+                            </a>
+                            <a href="https://wa.me/message/WFB2SLFGSNBZJ1" target="_blank">
+                                <img class="ic-social-media" src="/assets/images/icon/emam-whatsapp-white.svg"
+                                    alt="WhatsApp emam" style="max-width: 40px; margin: 0 10px; width: 100%;">
+                            </a>
+                            <a href="https://www.linkedin.com/company/emam-id/" target="_blank">
+                                <img class="ic-social-media" src="/assets/images/icon/emam-linkedin-white.svg"
+                                    alt="Linkedin emam" style="max-width: 40px; margin: 0 10px; width: 100%;">
+                            </a>
+                            <a href="https://www.youtube.com/c/emamindonesia/" target="_blank">
+                                <img class="ic-social-media" src="/assets/images/icon/emam-youtube-white.svg"
+                                    alt="Youtube emam" style="max-width: 40px; margin: 0 10px; width: 100%;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="col-xl-3 col-lg-3 col-md-12 mt-4">
+                <h4 class="txt-footer">Our Company</h4>
+                <p class="no-sp"><a class="txt-footer link-footer" href="/about">Tentang Kami</a></p>
+                <p class="no-sp"><a class="txt-footer link-footer" href="/about#contactus">
+                        Hubungi Kami
+                    </a></p>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 mt-4">
+                <h4 class="txt-footer">Untuk Kamu</h4>
+                <p class="no-sp"><a class="txt-footer link-footer" href="/privacy">Kebijakan Privasi</a></p>
+                <p class="no-sp"><a class="txt-footer link-footer" href="/terms">
+                        Syarat dan Ketentuan
+                    </a></p>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 mx-auto mt-4">
+                <h4 class="txt-footer">Daftarkan Tempat Makanmu di emam</h4>
+                <p class="no-sp"><a class="txt-footer link-footer" href="https://wa.me/message/WFB2SLFGSNBZJ1"
+                        target="_blank">
+                        Hubungi kami disini!
+                    </a></p>
+                <!-- <h4 class="txt-footer mt-4">Untuk Kamu</h4>
+                            <a class="txt-footer no-sp link-footer" href="/sitemap">Sitemap</a> -->
+            </div>
+        </div>
+        <hr>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-12 col-lg-12">
+                <!--Copyright-->
+                <p class="text-center">Copyright &copy;2021 PT Zaki Indonesia Mendunia. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+<!-- Service worker -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log(`Service Worker registered! Scope: ${registration.scope}`);
+                })
+                .catch(err => {
+                    console.log(`Service Worker registration failed: ${err}`);
+                });
+        });
+    }
+    <% if (locals.API_BACKEND_URL) { %>
+        var emapi_base = '<%=locals.API_BACKEND_URL%>';
+    <% } %>
+</script>
+<% if(locals.FB_ENABLE=='true' ){ %>
+    <!-- Firebase -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: '<%- locals.FB_APIKEY %>',
+            authDomain: '<%- locals.FB_AUTH_DOMAIN %>',
+            databaseURL: '<%- locals.FB_DB_URL %>',
+            projectId: '<%- locals.FB_PROJECT_ID %>',
+            storageBucket: '<%- locals.FB_STORAGE_BUCKET %>',
+            messagingSenderId: '<%- locals.FB_MESSANGER_SENDER_ID %>',
+            appId: '<%- locals.FB_APP_ID %>',
+            measurementId: '<%- locals.FB_MEASUREMENT_ID %>'
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <% } %>
+
+
+        <!-- Bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"
+            integrity="sha512-iILlngu0qmiyIkOH6MV1RWSya+DL2uzo0cb/nKR4hqwz9H+Xnop1++f8TMw1j5CdbutXGkBUyfRUfg/hmNBfZg=="
+            crossorigin="anonymous"></script>
+        <script src="/assets/js/main.js"></script>
+        <% if(locals.loadJS){ %>
+            <% locals.loadJS.forEach(e=>{ %>
+                <script src="<%= e.src %>"></script>
+                <% }) %>
+                    <% } %>
+
+                        <!-- Google Tag Manager (noscript) -->
+                        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3Z4GRJ" height="0"
+                                width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                        <!-- End Google Tag Manager (noscript) -->
+                        </body>
+
+                        </html>

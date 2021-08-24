@@ -1,0 +1,93 @@
+<%- include('./partials/header.html') %>
+    <%- include('./partials/top-nav.html') %>
+        <main id="auth">
+            <div class="container">
+                <div class="pd-layout-section" v-if="loading">
+                    <section class="section-login row justify-content-center">
+                        <div class="col-lg-6 col-md-8 col-12 text-center p-4 col-login">
+                            <img style="max-width: 100px; margin-bottom: 32px;" src="/assets/images/emam-logo.svg"
+                                alt=""><br /> <br />
+                            <i class="fa fa-spinner fa-pulse fa-5x fa-fw" style="color: #e92737;"></i>
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </section>
+                </div>
+                <div class="pd-layout-section" v-if="!loading">
+                    <section class="section-login row justify-content-center">
+                        <div class="col-lg-6 col-md-8 col-12 text-center p-4 col-login" v-if="!needRegistered">
+                            <img style="max-width: 100px; margin-bottom: 32px;" src="/assets/images/emam-logo.svg"
+                                alt="">
+                            <div class="alert alert-danger" role="alert" v-if="loginErrMessage">
+                                {{ loginErrMessage }}
+                            </div>
+                            <p>Masuk dengan menggunakan:</p>
+
+                            <a href="javascript:void(0)" v-on:click="signInWithGoogle" class="btn btn-google"
+                                style="margin: 32px 0 16px; ">
+                                <img class="mr-2" src="/assets/images/icon/emam-host-google.svg" alt="">
+                                Google
+                                Account
+                            </a>
+                            <p>anda perlu bantuan? <a href="/about#contactus" style="color: #e92737;">Hubungi Kami</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-md-8 col-12 p-4 col-login" v-if="needRegistered">
+                            <div class="text-center">
+                                <img style="max-width: 100px; margin-bottom: 32px;" src="/assets/images/emam-logo.svg"
+                                    alt="">
+                                <div class="alert alert-danger" role="alert" v-if="formRegisterErrMessage">
+                                    {{ formRegisterErrMessage }}
+                                </div>
+                                <p>Mohon lengkapi data berikut:</p>
+                            </div>
+                            <form @submit="registerUser">
+                                <div class="form-group">
+                                    <label for="reg_nama">Nama Lengkap*</label>
+                                    <input placeholder="Masukkan nama kamu" v-model="user.nama" id="reg_nama"
+                                        type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg_username">Username*</label>
+                                    <input placeholder="Cth: user_name" v-model="user.username" type="text"
+                                        id="reg_username" class="form-control">
+                                    <p>pastikan username 5-30 karakter</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg_email">E-mail*</label>
+                                    <input placeholder="Cth: example@example.com" v-model="user.email"
+                                        v-bind:readonly="provider.name == 'google.com'" type="email" id="reg_email"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg_tglLahir">Tanggal Lahir*</label>
+                                    <input v-model="user.tglLahir" type="date" id="reg_tglLahir" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Jenis Kelamin*</label>
+                                    <div class="form-check">
+                                        <input v-model="user.jenisKelamin" class="form-check-input" type="radio"
+                                            id="reg_jenisKelamin_l" value="L">
+                                        <label for="reg_jenisKelamin_l" class="form-check-label">Laki-laki</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input v-model="user.jenisKelamin" class="form-check-input" type="radio"
+                                            id="reg_jenisKelamin_p" value="P">
+                                        <label for="reg_jenisKelamin_p" class="form-check-label">Perempuan</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg_bio">Bio*</label>
+                                    <textarea placeholder="Ceritakan tentang kamu" v-model="user.bio" id="reg_bio"
+                                        class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn nav-button"
+                                        style="padding: 8px 20px;">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <%- include('./partials/footer.html') %>

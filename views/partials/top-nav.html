@@ -1,0 +1,217 @@
+<div class="container-fluid">
+    <!-- navigasi bar -->
+    <nav id="navigasi-fix" class="row navbar navbar-expand-lg">
+        <div class="container">
+            <!-- image brand -->
+            <a class="navbar-brand mr-auto" href="/">
+                <img src="/assets/images/logo-emam-small.png" alt="Logo emam Indonesia" />
+            </a>
+            <div>
+
+            </div>
+            <!-- menu navbar hp -->
+            <% if(!locals.user){ %>
+                <a class="nav-button inlineblock d-md-block d-lg-none mr-3" style="text-decoration: none;"
+                    href="/auth">Login</a>
+                <% }else{ %>
+                    <div class="dropdown show my-auto inlineblock d-md-block d-lg-none">
+                        <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle my-auto"
+                            data-toggle="dropdown" href="#" id="dropdownMenuLink" role="button"
+                            style="text-decoration: none; color: #000;">
+                            <!-- Buka Tutup -->
+                            <img src="<%= user.avatar %>" class="rounded-circle" style="object-fit: cover;" width="40"
+                                height="40">
+                        </a>
+                        <div aria-labelledby="dropdownMenuLink" class="dropdown-menu mt-3"
+                            style="width: 250px; margin-left: -170px;" disabled>
+                            <table style="width:100%">
+                                <tr style="border-bottom: 1px solid #eee">
+                                    <td class="text-center">
+                                        <img src="<%= user.avatar %>" class="rounded-circle m-2"
+                                            style="object-fit: cover; display: inline;" width="40" height="40">
+                                    </td>
+                                    <td colspan="2">
+                                        <a href="/profile">
+                                            <div class="profile-group" style="display: inline;">
+                                                <p class="no-sp inlineblock">
+                                                    <%= user.nama %>
+                                                </p>
+                                                <p class="no-sp " style="font-size: 12px;">lihat
+                                                    profile</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="#" class="btn btn-nav text-left" style="width:100%;">
+                                            <div class="profile-group">
+                                                <p class="no-sp inlineblock">Pengaturan &
+                                                    Privasi</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="/profile?ti=2" class="btn btn-nav text-left" style="width:100%;">
+                                            <div class="profile-group">
+                                                <p class="no-sp inlineblock">Wishlist</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="/profile?ti=1" class="btn btn-nav text-left" style="width:100%;">
+                                            <div class="profile-group">
+                                                <p class="no-sp inlineblock">Foodlist</p>
+                                            </div>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                                                    <td colspan="2">
+                                                                        <a href="#" class="btn btn-nav text-left" style="width:100%;">
+                                                                            <div class="profile-group">
+                                                                                <p class="no-sp inlineblock">Hubungi Kami</p>
+                                                                            </div>
+                                                                        </a>
+                                                                        
+                                                                    </td>
+                                                                </tr> -->
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="/logout" class="btn btn-nav text-left" style="width:100%;">
+                                            <div class="profile-group">
+                                                <p class="no-sp inlineblock">Keluar</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <% } %>
+                        <!-- navbar toogle icon -->
+                        <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button"
+                            data-toggle="collapse" data-target="#navb">
+                            <span class="navbar-toggler-icon custom-icon"></span>
+                        </button>
+                        <!-- menu navbar -->
+                        <div class="collapse navbar-collapse" id="navb">
+                            <ul class="nav navbar-nav ml-auto mr-3">
+                                <li class="nav-item mx-md-2 my-1">
+                                    <a class="nav-link <%= locals.routePath == '/' ? 'active': ''%>" href="/">Home</a>
+                                </li>
+                                <li class="nav-item mx-md-2 my-1">
+                                    <a class="nav-link <%= locals.routePath == '/about' ? 'active': ''%>"
+                                        href="/about">About</a>
+                                </li>
+                                <li class="nav-item nav-item-button mx-md-2 py-2 inlineblock">
+                                    <a class="nav-button-secondary" href="https://wa.me/message/WFB2SLFGSNBZJ1"
+                                        target="_blank">Daftarkan
+                                        Tempatmu</a>
+                                </li>
+                                <!-- <div id="top-nav-auth"></div> -->
+                                <% if(!locals.user){ %>
+                                    <li
+                                        class="nav-item nav-item-button mx-md-2 py-2 inlineblock d-none d-md-none d-lg-block">
+                                        <a class="nav-button" style="text-decoration: none;" href="/auth">Login</a>
+                                    </li>
+                                    <% }else{ %>
+                                        <li
+                                            class="nav-item nav-item-button mx-md-2 py-2 inlineblock d-none d-md-none d-lg-block">
+                                            <div class="dropdown show my-auto">
+                                                <a aria-expanded="false" aria-haspopup="true"
+                                                    class="dropdown-toggle my-auto" data-toggle="dropdown" href="#"
+                                                    id="dropdownMenuLink" role="button"
+                                                    style="text-decoration: none; color: #000;">
+                                                    <!-- Buka Tutup -->
+                                                    <img src="<%= user.avatar %>" class="rounded-circle"
+                                                        style="object-fit: cover;" width="40" height="40">
+                                                </a>
+                                                <div aria-labelledby="dropdownMenuLink" class="dropdown-menu mt-3"
+                                                    style="width: 250px" disabled>
+                                                    <table style="width:100%">
+                                                        <tr style="border-bottom: 1px solid #eee">
+                                                            <td class="text-center">
+                                                                <img src="<%= user.avatar %>" class="rounded-circle m-2"
+                                                                    style="object-fit: cover; display: inline;"
+                                                                    width="40" height="40">
+                                                            </td>
+                                                            <td colspan="2">
+                                                                <a href="/profile">
+                                                                    <div class="profile-group" style="display: inline;">
+                                                                        <p class="no-sp inlineblock">
+                                                                            <%= user.nama %>
+                                                                        </p>
+                                                                        <p class="no-sp " style="font-size: 12px;">lihat
+                                                                            profile</p>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <a href="#" class="btn btn-nav text-left"
+                                                                    style="width:100%;">
+                                                                    <div class="profile-group">
+                                                                        <p class="no-sp inlineblock">Pengaturan &
+                                                                            Privasi</p>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <a href="/profile?ti=2" class="btn btn-nav text-left"
+                                                                    style="width:100%;">
+                                                                    <div class="profile-group">
+                                                                        <p class="no-sp inlineblock">Wishlist</p>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <a href="/profile?ti=1" class="btn btn-nav text-left"
+                                                                    style="width:100%;">
+                                                                    <div class="profile-group">
+                                                                        <p class="no-sp inlineblock">Foodlist</p>
+                                                                    </div>
+                                                                </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <!-- <tr>
+                                            <td colspan="2">
+                                                <a href="#" class="btn btn-nav text-left" style="width:100%;">
+                                                    <div class="profile-group">
+                                                        <p class="no-sp inlineblock">Hubungi Kami</p>
+                                                    </div>
+                                                </a>
+                                                
+                                            </td>
+                                        </tr> -->
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <a href="/logout" class="btn btn-nav text-left"
+                                                                    style="width:100%;">
+                                                                    <div class="profile-group">
+                                                                        <p class="no-sp inlineblock">Keluar</p>
+                                                                    </div>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <% } %>
+                            </ul>
+                        </div>
+        </div>
+    </nav>
+</div>

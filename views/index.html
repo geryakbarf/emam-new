@@ -1,0 +1,155 @@
+<%- include('./partials/header.html') %>
+    <%- include('./partials/top-nav.html') %>
+        <header class="text-center" id="header-index">
+            <h1>
+                <div class="textheader1">#KulineranAman #TanyaEmamAja</div>
+                <!-- <div class="textheader2 text-inline">mungkin kamu bisa coba foodlist
+            <div class="emamfont">emam</div>
+        </div> -->
+            </h1>
+            <div class="search-box">
+                <div class="form-group has-search col-md-4" style="position: absolute; z-index: 99">
+                    <img class="form-control-cari" src="/assets/images/icon/search.svg" alt="">
+                    <input autocomplete="off" class="form-control input-lg food_search" id="search_food"
+                        placeholder="Cari tempat makanmu disini" type="text" />
+                    <div id="result">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container-fluid">
+                <div class="pd-layout">
+                    <section class="section-kategori row justify-content-center" style="padding: 10px 0;
+                background-color: #fcfdfb;">
+                        <div class="container">
+                            <div class="row">
+                                <h3 class="ml-2 txt-h-title-tempatmakan">Kategori</h3>
+                                <% if(locals.category) { %>
+                                    <% if(allCategory.length> 4) { %>
+                                        <a class="ml-auto mr-4 mt-2 txt-lihat-semua" href="/explore/category">
+                                            <p>Lihat Semua</p>
+                                        </a>
+                                        <% } %>
+                            </div>
+                            <div class="row">
+                                <% for(idx of category){ %>
+                                    <div class="col-md-3 col-6 card-container">
+                                        <a href="/explore/category/<%= idx.name %>" style="text-decoration: none;">
+                                            <div class="card-kategori my-2"
+                                                style="background-image: url('/assets/images/<%= idx.image %>');">
+                                                <h4 class="txt-kategori" style="color: #fff;">
+                                                    <%= idx.name %>
+                                                </h4>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section-tempatmakan row justify-content-center" id="detail-foodlist">
+                        <div class="container">
+                            <div class="row">
+                                <h3 class="ml-2 txt-h-title-tempatmakan">Tempat Makan Terbaru</h3>
+                                <a class="ml-auto mr-4 mt-2 txt-lihat-semua" href="/explore">
+                                    <p>Lihat Semua</p>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <% if(locals.newPlaces){ %>
+                                    <% for(place of newPlaces){ %>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-1 card-container">
+                                            <div class="card-group" style="height: 100%;">
+                                                <div class="layout-btn-absolute">
+                                                    <!-- <div class="btn-icon inlineblock mx-1">
+                                        <img src="/assets/images/icon/emam-host-save-default.svg" alt="save button">
+                                    </div> -->
+                                                    <div class="btn-icon inlineblock mx-1">
+                                                        <img data-is-liked="<%= place.is_liked %>" onclick="onWistListClicked('<%= place._id %>',this)" src="/assets/images/icon/emam-host-like-<%= place.is_liked? 'active': 'default' %>.svg" alt="like button">
+                                                    </div>
+                                                </div>
+                                                <a href="/p/<%= place.slug %>">
+                                                    <div class="card-layout">
+                                                        <div class="card-box">
+                                                            <div class="img-box">
+                                                                <img alt="Photo Tempat <%= place.name %>"
+                                                                    class="img-tempatmakan"
+                                                                    src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>" />
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h4 class="txt-h-nama-tempatmakan">
+                                                                    <%= place.name %>
+                                                                </h4>
+                                                                <p class="txt-alamat-tempatmakan">
+                                                                    <%= place.address %>
+                                                                </p>
+                                                                <!-- <div class="txt-link-detail-tempatmakan">Info Tempat</div> -->
+                                                                <!-- <img class="logoemamfoodlist" src="images/logo/logo2.png" alt="logo emam"> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section-tempatmakan row justify-content-center">
+                        <div class="container">
+                            <div class="row">
+                                <h3 class="ml-2 txt-h-title-tempatmakan">Partner emam.id</h3>
+                                <a class="ml-auto mr-4 mt-2 txt-lihat-semua" href="/partner">
+                                    <p>Lihat Semua</p>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <% if(locals.partner){ %>
+                                <% for(data of partner.places){ %>
+                                <% for(place of data){ %>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-1 card-container">
+                                    <div class="card-group" style="height: 100%;">
+                                        <div class="layout-btn-absolute">
+                                            <!-- <div class="btn-icon inlineblock mx-1">
+                                <img src="/assets/images/icon/emam-host-save-default.svg" alt="save button">
+                            </div> -->
+                                            <div class="btn-icon inlineblock mx-1">
+                                                <img data-is-liked="<%= place.is_liked %>" onclick="onWistListClicked('<%= place._id %>',this)" src="/assets/images/icon/emam-host-like-<%= place.is_liked? 'active': 'default' %>.svg" alt="like button">
+                                            </div>
+                                        </div>
+                                        <a href="/p/<%= place.slug %>">
+                                            <div class="card-layout">
+                                                <div class="card-box">
+                                                    <div class="img-box">
+                                                        <img alt="Photo Tempat <%= place.name %>"
+                                                             class="img-tempatmakan"
+                                                             src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>" />
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <h4 class="txt-h-nama-tempatmakan">
+                                                            <%= place.name %>
+                                                        </h4>
+                                                        <p class="txt-alamat-tempatmakan">
+                                                            <%= place.address %>
+                                                        </p>
+                                                        <!-- <div class="txt-link-detail-tempatmakan">Info Tempat</div> -->
+                                                        <!-- <img class="logoemamfoodlist" src="images/logo/logo2.png" alt="logo emam"> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <%- include('./partials/footer.html') %>

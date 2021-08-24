@@ -1,0 +1,76 @@
+<%- include('./partials/header.html') %>
+    <%- include('./partials/top-nav.html') %>
+        <div class="container">
+            <div class="pd-layout-section">
+                <section class="section-profile row justify-content-center">
+                    <div class="col-12">
+                        <div class="row justify-content-center">
+                            <img src="/assets/images/emam-coffee-shop.png" class="rounded-circle mr-3"
+                                style="object-fit: cover; display: inline;" width="70" height="70">
+                            <div class="my-auto" style="display: inline-block;">
+                                <p class="no-sp inlineblock">@anggarawfp</p>
+                                <a href="#">
+                                    <p class="no-sp">Ubah foto profile</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-12 mt-48">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input class="form-control box-text">
+                            <p style="font-size: 12px;">Bantu orang menemukan akun Anda dengan menggunakan nama yang
+                                Anda kenal:
+                                baik nama lengkap, nama
+                                panggilan, atau nama
+                                bisnis Anda.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input class="form-control box-text">
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input class="form-control box-text">
+                        </div>
+                        <div class="form-group">
+                            <label>Bio</label>
+                            <textarea class="form-control box-text" required="required" rows="4" style="resize: none;"
+                                type="email"></textarea>
+                        </div>
+                        <div class="mt-32">
+                            <h6 style="font-weight: bold;">Informasi pribadi</h6>
+                            <p style="font-size: 12px;">Berikan informasi pribadi Anda, meskipun akun tersebut digunakan
+                                untuk
+                                pribadi, bisnis atau hal
+                                lain. Ini tidak akan
+                                menjadi bagian dari profil publik Anda.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control box-text">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Telepon</label>
+                            <input class="form-control box-text">
+                        </div>
+                        <div class="form-group">
+                            <p>Jenis Kelamin</p>
+                            <div class="inlineblock mr-3">
+                                <input type="radio" name="rdjeniskelamin" id="lakilaki" checked>
+                                <label for="lakilaki">Laki-laki</label>
+                            </div>
+                            <div class="inlineblock">
+                                <input type="radio" name="rdjeniskelamin" id="perempuan">
+                                <label for="perempuan">Perempuan</label>
+                            </div>
+                        </div>
+                        <p>anda perlu bantuan? <a href="/about#contactus">hubungi kami</a></p>
+                        <a href="/profile"><button class="btn btn-border mr-2">Kembali</button></a>
+                        <button class="btn btn-fill">Simpan</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <%- include('./partials/footer.html') %>

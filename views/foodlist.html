@@ -1,0 +1,110 @@
+<%- include('./partials/header.html') %>
+    <%- include('./partials/top-nav.html') %>
+        <main id="detailFoodlist">
+            <div class="container">
+                <div class="pd-layout-section">
+                    <section class="section-profile justify-content-center">
+                        <div class="row">
+                            <div class="col-lg-3 text-center">
+                                <img src="<%= foodlist.banner ? foodlist.banner.path : '/assets/images/emam-menu-no-photos.jpg'%>" class="image-rectangle">
+                            </div>
+                            <div class="col-lg-9">
+                                <p class="no-sp">Foodlist</p>
+                                <h1 style="font-size: 1.5rem">
+                                    <%= foodlist.nama %>
+                                </h1>
+                                <!-- <p class="mt-3 no-sp" style="color: #4C4C4C;">Bandung, Indonesia</p> -->
+                                <p class="mb-2 no-sp">
+                                    <%= foodlist.bio %>
+                                </p>
+                                <p class="no-sp">Dibuat oleh
+                                    <a href="/profile/<%= foodlist.user.username %>">
+                                        <%= foodlist.user.nama %>
+                                    </a>
+                                </p>
+                                <p class="inlineblock" style="font-size: 14px; color: #000;">
+                                    <%= foodlist.totalPlaces %> tempat</p>
+                                <!-- <p class="inlineblock" style="font-size: 14px; color: #A5A3A3;">5w</p> -->
+                                <div class="mt-3">
+                                    <button class="btn btn-grey" @click="shareFoodList">Bagikan</button>
+                                    <% if(foodlist.is_owned) {%>
+                                        <a href="/foodlist/<%= foodlist._id %>/edit"><button class="btn btn-grey mr-2">Ubah</button></a>
+                                        <button class="btn btn-grey" @click="deleteFoodList('<%= foodlist._id%>')">
+                                    <i class="fa fa-spinner fa-pulse fa-fw" v-if="loading"></i>
+                                    <span v-if="!loading">Hapus</span>
+                                </button>
+                                        <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% if(foodlist.is_owned) {%>
+                            <div class="row mt-48">
+                                <div class="col-lg-3 col-md-4 col-12">
+                                    <a href="/foodlist/<%=foodlist._id%>/add-place">
+                                        <p><span class="mr-2" style="padding: 5px 10px; background-color: #e92737; color: #fff; font-weight: bold; border-radius: 5px;">+</span>Tambah tempat
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } %>
+                                <div id="layout-tab-wishlist">
+                                    <div class="row">
+                                        <% if(foodlist.totalPlaces > 0) {%>
+                                            <% for(place of foodlist.listPlaces) { %>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-1 card-container">
+                                                    <div class="card-group" style="height: 100%;">
+                                                        <div class="layout-btn-absolute">
+                                                            <%if(foodlist.is_owned) {%>
+                                                                <a href="javascript:void(0)" @click="deleteItemFromFoodList('<%= foodlist._id %>','<%= place._id %>')">
+                                                                    <div class="btn-icon inlineblock mx-1" style="margin: 0!important;padding: 1px 6px!important">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </div>
+                                                                </a>
+                                                            <% } %>
+                                                            <!-- <a href="#">
+                                                                <div class="btn-icon inlineblock mx-1">
+                                                                    <img src="/assets/images/icon/emam-host-like-active.svg" alt="like button">
+                                                                </div>
+                                                            </a> -->
+                                                        </div>
+                                                        <% if(place.slug) {%>
+                                                            <a href="/p/<%= place.slug %>">
+                                                        <% } else { %>
+                                                            <a href="<%= foodlist.is_owned ? `/foodlist/${foodlist._id}/edit-place?placeID=${place._id}` : '#' %>">
+                                                        <% } %>
+                                                            <div class="card-layout">
+                                                                <div class="card-box">
+                                                                    <div class="img-box">
+                                                                        <img alt="Photo Tempat <%= place.name %>" class="img-tempatmakan" src="<%= place.photo ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg'%>" />
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <h4 class="txt-h-nama-tempatmakan">
+                                                                            <%= place.name %>
+                                                                        </h4>
+                                                                        <p class="txt-alamat-tempatmakan">
+                                                                            <%= place.address %>
+                                                                        </p>
+                                                                        <!-- <div class="txt-link-detail-tempatmakan">Info Tempat</div> -->
+                                                                        <!-- <img class="logoemamfoodlist" src="images/logo/logo2.png" alt="logo emam"> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                    <% }else{ %>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12 my-1 text-center">
+                                                            <p style="margin: 100px 0 ;">Food list kosong :(</p>
+                                                        </div>
+                                                        <% } %>
+                                    </div>
+                                </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <script>
+            var foodListData = <%- JSON.stringify(foodlist) %>
+        </script>
+        <%- include('./partials/footer.html') %>

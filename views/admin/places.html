@@ -1,0 +1,25 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container" style="margin-top: 10px;">
+    <a class="btn btn-primary mb-2" href="/admin/places/new">New Place</a>
+    <div class="columns mt-2" id="list-place">
+        <div class="column col-2" style="border-right: 1px solid #eee;">
+            <%- include('./partials/list_places_nav.html') %>
+        </div>
+        <div class="column col-10">
+            <%- include('./partials/list_places/all_places.html') %>
+            <%- include('./partials/list_places/drafted_places.html') %>
+            <%- include('./partials/list_places/published_places.html') %>
+            <%- include('./partials/list_places/updated_places.html') %>
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+</div>
+<% if(locals.name){%>
+<script>
+    var username = <%- JSON.stringify(name) %>;
+</script>
+<%}%>
+<%- include('./partials/footer.html') %>

@@ -1,0 +1,53 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/top-nav.html') %>
+<div class="container-fluid">
+    <section class="section-kasihtau row justify-content-center" id="kasihtau">
+        <div class="container">
+            <h2 class="txt-header-kasihtau">Kasih tau
+                <div class="emamfont">emam</div>
+            </h2>
+            <div class="col-md-6 col-12 mx-auto" id="form-tell">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input class="form-control box-text" v-model="form.nama">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control box-text" v-model="form.email">
+                </div>
+                <div class="form-group">
+                    <label class="label">Kasih Tau</label>
+                    <select class="form-control" v-model="form.subject">
+                        <option disabled="disabled" selected="selected" value="">Pilihan</option>
+                        <option>Tempat makan sudah tidak beroperasional</option>
+                        <option>Tempat makan sudah pindah</option>
+                        <option>Jam operasional salah</option>
+                        <option>Harga berbeda dari website</option>
+                        <option>Lokasi tidak sesuai</option>
+                        <option>Nomor telepon tidak aktif / salah</option>
+                        <option>Fasilitas / pelayanan tidak sesuai</option>
+                    </select>
+                    <div class="select-dropdown"></div>
+                </div>
+                <div class="form-group mt-3">
+                    <label>Pesan</label>
+                    <textarea class="form-control box-text" required="required" rows="11" style="resize: none;"
+                        type="text" v-model="form.pesan"></textarea>
+                </div>
+                <div class="g-recaptcha">
+                    <vue-recaptcha @verify="onVerify" ref="recaptcha"
+                        sitekey="6LdkWNcUAAAAAE3vhjVJRPX_VxYjkpcY4ih_sR9S">
+                    </vue-recaptcha>
+                </div>
+                <button class="btn btn-kirim mt-3" id="kirim" name="kirim" style="display: block; margin: 0 auto;"
+                    type="submit" v-on:click="onSave(true)">
+                    Kirim
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    var placeID = '<%= slug %>';
+</script>
+<%- include('./partials/footer.html') %>

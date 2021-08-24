@@ -1,0 +1,208 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/top-nav.html') %>
+<main>
+    <div class="container">
+        <div class="pd-layout">
+            <section class="section-claim" id="form-claim">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div>
+                            <div class="row my-2">
+                                <div class="col-md-4">
+                                    <img alt="" class="img-result-tempat my-2"
+                                        src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>"
+                                        style="max-width: 100%;">
+                                </div>
+                                <div class="col-md-8">
+                                    <h4 class="txt-header"><%= place.name %></h4>
+                                    <p>Tempat belum di klaim, Silahkan klaim untuk memverifikasi tempat makan</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="txt-header my-3">Nama Pemilik/Manajer</h4>
+                                    <input class="form-control" placeholder="Cth: Budi Manager" required type="text"
+                                        v-model="form.ownerName">
+                                </div>
+                                <div class="col-md-12">
+                                    <h4 class="txt-header my-3">Nomor Telepon</h4>
+                                    <input class="form-control" placeholder="Cth: 0891000xxx" required type="text"
+                                        v-model="form.ownerPhoneNumber">
+                                </div>
+                                <div class="col-md-12">
+                                    <h4 class="txt-header my-3">Alamat Restoran</h4>
+                                    <input class="form-control" placeholder="Cth: jl. berlian indah No 28" type="text"
+                                        v-model="form.placeAddress">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="row my-2">
+                            <div class="col-12">
+                                <h5 style="font-weight: bold;">Jadwal Tempat Makan</h5>
+                                <p style="color: #707070;">Kami akan mengunjungi tempat anda sesuai jam operasional
+                                    setelah kami mengkonfirmasi terlebih dahulu</p>
+                            </div>
+                            <div class="row">
+
+                            </div>
+                            <div class="col-4">
+                                <h5 class="txt-title">Hari</h5>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="txt-title">Jam Buka</h5>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="txt-title">Jam Tutup</h5>
+                            </div>
+                            <div class="col-12" v-for="(op, idx) in form.operational_times">
+                                <div class="row my-2">
+                                    <div class="col-4 my-auto">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" v-bind:id="op.day"
+                                                v-model="op.is_open" value="">
+                                            <label class="form-check-label" v-bind:for="op.day">{{op.day}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="form-control" id="example-time-input" type="time"
+                                            v-bind:id="'openTime-'+idx" v-model="op.openTime">
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="form-control" id="example-time-input" type="time"
+                                            v-bind:id="'closeTime-'+idx" v-model="op.closeTime">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center justify-content-center">
+                        <div class="g-recaptcha mt-4 mx-auto">
+                            <vue-recaptcha ref="recaptcha" @verify="onVerify"
+                                sitekey="6LdkWNcUAAAAAE3vhjVJRPX_VxYjkpcY4ih_sR9S">
+                            </vue-recaptcha>
+                        </div>
+
+                        <button class="btn btn-primary-emam mt-3" v-on:click="onSave(true)">Kirim
+                            Pesan
+                        </button>
+                    </div>
+                    <div class="col-md-5 col-12 text-center my-4">
+                        Dengan mengirimkan data tersebut, anda telah menyetujui
+                        <a href="#" data-toggle="modal" data-target="#popup-terms-conditions">
+                            syarat dan ketentuan
+                        </a>emam.id
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="popup-terms-conditions" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Terms & Conditions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>Syarat dan Ketentuan</h3>
+                    <p><b>Pembaharuan terakhir pada 9 September 2020</b>. Syarat dan ketentuan ini (kedepannya akan
+                        disebut
+                        <b>"Ketentuan"</b>) efektif
+                        berlaku bagi pengguna yang mengakses atau menggunakan Layanan kami sejak 9 September 2020.
+                    </p>
+                    <p>Ketentuan ini mengatur akses anda ke dan penggunaan produk dan layanan kami, termasuk yang
+                        ditawarkan
+                        melalui situs
+                        web, acara, komunikasi (misalnya email, panggilan telepon, dan teks) (secara kolektif akan
+                        disebut
+                        <b>"Layanan"</b>). Dengan
+                        mengakses atau menggunakan Layanan, anda dianggap telah membaca, mengerti, memahami dan
+                        menyetujui
+                        Ketentuan ini, yang
+                        merupakan kontrak yang mengikat secara hukum dengan PT. Zaki Indonesia Mendunia. Apabila ada
+                        yang
+                        kurang jelas, dapat
+                        menghubungi kami <a href="https://wa.me/message/WFB2SLFGSNBZJ1"
+                            target="_blank"><b>disini</b></a>.
+                        Pihak emam.id
+                        berhak merubah
+                        syarat dan
+                        ketentuan kapanpun apabila diperlukan.
+                    </p>
+                    <h5><b>1. Penjelasan emam.id sebagai aggregator tempat makan</b></h5>
+                    <p>emam.id adalah aggregator tempat makan yang memberikan informasi yang paling akurat tentang
+                        tempat
+                        makan di kota
+                        Bandung.
+                    </p>
+                    <h5><b>2. Penjelasan sumber informasi tempat makan</b></h5>
+                    <p>Tempat makan yang terdaftar di <a href="www.emam.id">emam.id</a> namun belum di klaim oleh
+                        pemilik
+                        usaha
+                        menggunakan informasi
+                        yang didapatkan
+                        dengan cara :</p>
+                    <p class="no-sp">- Mengunjungi lokasi langsung sebagai pelanggan tempat makan.</p>
+                    <p class="no-sp">- Mencari informasi dari sumber informasi yang tersedia di internet.</p>
+                    <p>- Kombinasi semua cara yang ada di atas.</p>
+                    <p>Tempat makan yang terdaftar di <a href="www.emam.id">emam.id</a> dan telah terdaftar sebagai
+                        emam verified
+                        menggunakan
+                        informasi
+                        yang didapatkan
+                        dengan cara :
+                    </p>
+                    <p>- Langsung diberikan ketika anda memberikan kepada kami.</p>
+                    <h5><b>3. Persyaratan penggunaan layanan bisnis</b></h5>
+                    <p>Bagi pemilik bisnis, untuk mengakses atau menggunakan Layanan kami, anda menyetujui bahwa :</p>
+                    <p class="no-sp">- Anda memiliki kewenangan untuk bertindak atas nama bisnis atau bisnis yang
+                        terkait.
+                    </p>
+                    <p class="no-sp">- Akses anda untuk memperbaharui informasi hanya akan dalam kapasitas anda sebagai
+                        perwakilan resmi
+                        bisnis anda.</p>
+                    <p class="no-sp">- Bisnis anda mematuhi hukum yang berlaku dan tidak menawarkan, mengiklankan,
+                        menjual,
+                        atau menyewakan
+                        produk dan / atau
+                        layanan ilegal.</p>
+                    <p class="no-sp">- Anda mengizinkan emam.id lisensi terbatas yang tidak dapat dipindahtangankan,
+                        tidak
+                        eksklusif, bebas
+                        royalti, untuk
+                        menampilan situs web publik anda pada <b>Layanan</b> kami.</p>
+                    <p class="no-sp">- Kami dapat menghubungi anda, termasuk melalui telepon atau email, menggunakan
+                        informasi
+                        kontak yang anda berikan kepada
+                        kami.</p>
+                    <p class="no-sp">- Anda tidak akan menggunakan merek dagang atau merek <b>Layanan</b> emam.id dengan
+                        cara
+                        apa
+                        pun
+                        tanpa persetujuan tertulis
+                        sebelumnya dari emam.id.</p>
+                    <p>- Turut mendukung dengan berkolaborasi untuk pengembangan emam.id untuk menciptakan
+                        ekosistem kuliner digital.</p>
+                    <h5><b>4. Kontak</b></h5>
+                    <p>Apabila Pengguna memiliki pertanyaan, mohon email kami di tanya@emam.id.</p>
+                    <p>Copyright ©2019 PT Zaki Indonesia Mendunia, All Rights Reserved.</p>
+                    <!-- <div class="modal-footer">
+                            <a class="btn-primary-emam" data-dismiss="modal">Close</a>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    var placeID = '<%= place.slug %>';
+    var placeName = '<%= place.name %>';
+</script>
+<%- include('./partials/footer.html') %>

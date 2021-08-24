@@ -1,0 +1,17 @@
+<ul class="nav">
+    <li v-bind:class="[isActiveSideMenu(0) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(0)">General</a>
+
+    </li>
+    <% if(locals.id){ %>
+        <li v-bind:class="[isActiveSideMenu(6) ? 'active' : '', 'nav-item']">
+            <a href="javascript:void(0)" v-on:click="setSideMenuIndex(6)">Restaurant</a>
+        </li>
+    <%}%>
+    <% if(locals.id){ %>
+    <li v-bind:class="[isActiveSideMenu(9) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(9)">Options</a>
+    </li>
+    <%}%>
+
+</ul>

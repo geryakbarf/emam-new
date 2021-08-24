@@ -1,0 +1,103 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<div class="container">
+    <div style="margin-top: 10px;">
+
+            <h1>Total Income</h1>
+    </div>
+    <h2>Subscription</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Total Subscription</td>
+            <td><%= income.totalSubs %> Owners</td>
+        </tr>
+        <tr>
+            <td>Total Gold</td>
+            <td><%= income.totalGold %> Owners </td>
+        </tr>
+        <tr>
+            <td>Total Silver</td>
+            <td><%= income.totalSilver %> Owners </td>
+        </tr>
+        <tr>
+            <td>Gold Income</td>
+            <td>Rp.<%= income.incomeGold %>  </td>
+        </tr>
+        <tr>
+            <td>Silver Income</td>
+            <td>Rp.<%= income.incomeSilver %>  </td>
+        </tr>
+        <tr>
+            <td>Subscription Income</td>
+            <td>Rp.<%= income.incomeSub %></td>
+        </tr>
+    </table>
+    <h2 style="margin-top: 20px">Addon</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Total Addon</td>
+            <td><%= income.totalAddon %> Owners</td>
+        </tr>
+        <tr>
+            <td>Total Emam</td>
+            <td><%= income.totalEmam %> Owners </td>
+        </tr>
+        <tr>
+            <td>Total IG</td>
+            <td><%= income.totalIG %> Owners </td>
+        </tr>
+        <tr>
+            <td>Total Double</td>
+            <td><%= income.totalDouble %>  Owners </td>
+        </tr>
+        <tr>
+            <td>Emam Income</td>
+            <td>Rp.<%= income.incomeEmam %>  </td>
+        </tr>
+        <tr>
+            <td>IG Income</td>
+            <td>Rp.<%= income.incomeIG %></td>
+        </tr>
+        <tr>
+            <td>Double Income</td>
+            <td>Rp.<%= income.incomeDouble %></td>
+        </tr>
+        <tr>
+            <td>Addon Income</td>
+            <td>Rp.<%= income.incomeAddon %></td>
+        </tr>
+    </table>
+    <table style="margin-top: 20px; margin-bottom: 20px">
+        <tr>
+            <th>Total Income</th>
+            <th>Rp.<%= income.totalIncome %></th>
+        </tr>
+    </table>
+</div>
+
+<%- include('./partials/footer.html') %>

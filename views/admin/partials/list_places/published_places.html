@@ -1,0 +1,32 @@
+<div v-if="sideMenuIndex == 2">
+<h3 class="mt-2">Published Places</h3>
+    <button class="btn btn-primary my-2" v-on:click="updateTimeAll" style="float: right">Update All Places Time</button>
+<div class="columns" style="margin: 10px 0;">
+    <div class="column col-2">
+        <div class="form-group">
+            <label class="form-label" for="filterpublish">Filter</label>
+            <input class="form-input" type="text" id="filterpublish" placeholder="filter..." v-model="filterpublish">
+        </div>
+    </div>
+</div>
+<div style="max-height: 400px;overflow-y: auto;overflow-x: hidden; margin-bottom: 20px">
+    <datatable :columns="placeCols" :data="places_publish" class="table" :filter="filterpublish">
+        <template scope="{ row, column, index }">
+            <tr>
+                <td class="text-center">{{ index + 1 }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.idx }}</td>
+                <td v-if="row.is_partner">Yes</td>
+                <td v-if="!row.is_partner">No</td>
+                <td v-if="row.is_sticker">Yes</td>
+                <td v-if="!row.is_sticker">No</td>
+                <td>{{ row.updatedAt }}</td>
+                <td class="text-center">
+                    <button class="btn btn-primary my-2" v-on:click="updateTime(row._id, row.name)">Update Time</button>
+                    <a v-bind:href="'/admin/places/'+row._id+'/edit'" class="btn my-2">Update</a>
+                </td>
+            </tr>
+        </template>
+    </datatable>
+</div>
+</div>

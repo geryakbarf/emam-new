@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3f8dbae7-fd3b-49c6-aaac-22466a65a404" name="Default Changelist" comment="- Joining from another repository">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qTfftyWQf5SCNjrrVg0FOpGs1Z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/admin/partials" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emam-website\views\admin\partials" />
+      <recent name="C:\xampp\htdocs\emam-website\views\admin" />
+      <recent name="C:\xampp\htdocs\emam-website\public\js\admin" />
+      <recent name="C:\xampp\htdocs\emam-website\views\admin\partials\place_forms" />
+      <recent name="C:\xampp\htdocs\emam-website\handlers\v1" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emam-website\data\mongo" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3f8dbae7-fd3b-49c6-aaac-22466a65a404" name="Default Changelist" comment="" />
+      <created>1617108613185</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617108613185</updated>
+      <workItem from="1617108618054" duration="5166000" />
+      <workItem from="1617352404441" duration="4890000" />
+      <workItem from="1617802213336" duration="1808000" />
+      <workItem from="1618234996188" duration="84000" />
+      <workItem from="1619667025693" duration="2453000" />
+      <workItem from="1619911931177" duration="418000" />
+      <workItem from="1619912365686" duration="849000" />
+      <workItem from="1619913676687" duration="51000" />
+      <workItem from="1619913742138" duration="1225000" />
+      <workItem from="1619930592974" duration="8000" />
+      <workItem from="1628827420289" duration="1400000" />
+      <workItem from="1629087900714" duration="612000" />
+      <workItem from="1629277650436" duration="35000" />
+      <workItem from="1629760945353" duration="6830000" />
+      <workItem from="1629779128114" duration="5113000" />
+      <workItem from="1629814400324" duration="638000" />
+    </task>
+    <task id="LOCAL-00001" summary="- Perbaikan admin Panel Page List Places">
+      <created>1617109483421</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1617109483421</updated>
+    </task>
+    <task id="LOCAL-00002" summary="- Perbaikan admin Panel Page General Page (Masih perlu ada beberapa perbaikan)">
+      <created>1617113804718</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617113804718</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Perbaikan Tampilan Admin Panel (1/2)">
+      <created>1617356217079</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617356217079</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Perbaikan Tampilan Admin Panel (1/2)">
+      <created>1617357293034</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617357293034</updated>
+    </task>
+    <task id="LOCAL-00005" summary="- Menambahkan partner pada emam.id">
+      <created>1629765799667</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1629765799667</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- Joining from another repository">
+      <created>1629780458817</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629780458817</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Perbaikan admin Panel Page List Places" />
+    <MESSAGE value="- Perbaikan admin Panel Page General Page (Masih perlu ada beberapa perbaikan)" />
+    <MESSAGE value="Perbaikan Tampilan Admin Panel (1/2)" />
+    <MESSAGE value="- Menambahkan partner pada emam.id" />
+    <MESSAGE value="- Joining from another repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Joining from another repository" />
+  </component>
+</project>

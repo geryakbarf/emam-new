@@ -1,0 +1,32 @@
+<% if(places.length > 0) {%>
+    <p class="no-sp text-left" style="padding: 3px 5px;">Hasil Pencarian tempat:</p>
+    <% places.forEach((place, idx) => { %>
+        <% if(idx < 3) {%>
+            <div class="show-search" align="left">
+                <a href="/p/<%= place.slug %>">
+                    <img src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>" style="width:50px; height:50px; float:left; margin-right:6px;" />
+                    <div class="text-info-tempat" style=""><span class="name"><%- place.name %></span>&nbsp;<br /><%= place.address %><br /></div>
+                </a>
+            </div>
+        <% } %>
+    <% }) %>
+    <% if(places.length > 3) { %>
+        <a href="/explore?search_place=<%=keyword%>"">Lihat semua</a>
+    <% } %>
+<% } %>
+<% if(menus.length > 0) {%>
+    <p class="no-sp text-left" style="padding: 3px 10px;">Hasil Pencarian makanan:</p>
+    <% menus.forEach((menu, idx) => { %>
+        <% if(idx < 3) {%>
+            <div class="show-search" align="left">
+                <a href="/p/<%= menu.slug %>#menu-<%= menu._id %>">
+                    <img src="<%= menu.photo.path ? menu.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>" style="width:50px; height:50px; float:left; margin-right:6px;" />
+                    <div class="text-info-tempat" style=""><span class="name"><%- menu.name %></span>&nbsp;<br /><%- menu.placeName %><br /></div>
+                </a>
+            </div>
+        <% } %>
+    <% }) %>
+    <% if(menus.length > 3) { %>
+        <a href="/explore?search_menu=<%=keyword%>">Lihat semua</a>
+    <% } %>
+<% } %>

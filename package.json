@@ -1,0 +1,38 @@
+{
+  "name": "emam-website",
+  "version": "1.0.0",
+  "description": "Emam core website based expressjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emamindonesia/emam-website.git"
+  },
+  "author": "Ala Rai AbdiAllah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emamindonesia/emam-website/issues"
+  },
+  "homepage": "https://github.com/emamindonesia/emam-website#readme",
+  "dependencies": {
+    "aws-sdk": "^2.738.0",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-winston": "^4.0.5",
+    "moment": "^2.27.0",
+    "mongoose": "^5.11.19",
+    "mongoose-delete": "^0.5.2",
+    "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.12",
+    "uuid": "^8.3.0",
+    "vue-html-editor": "^0.2.1",
+    "winston": "^3.3.3"
+  }
+}
