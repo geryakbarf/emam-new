@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f8dbae7-fd3b-49c6-aaac-22466a65a404" name="Default Changelist" comment="- Joining from another repository">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3f8dbae7-fd3b-49c6-aaac-22466a65a404" name="Default Changelist" comment="- Joining from another repository" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +24,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/admin/partials" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -66,6 +64,7 @@
       <workItem from="1629760945353" duration="6830000" />
       <workItem from="1629779128114" duration="5113000" />
       <workItem from="1629814400324" duration="638000" />
+      <workItem from="1629815948115" duration="1016000" />
     </task>
     <task id="LOCAL-00001" summary="- Perbaikan admin Panel Page List Places">
       <created>1617109483421</created>
