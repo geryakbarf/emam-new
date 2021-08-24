@@ -24,10 +24,22 @@ const createPlace = async (req, res) => {
 
 const insertClaim = async (req, res) => {
     try {
-        const claim = await Claim.create(req.body);
+        let data = req.body;
+        let operationalTimes = "";
+        //Send to Message Area
+        for (let i of data.operational_times) {
+            operationalTimes = operationalTimes.concat("-%20" + i.day + "%20" + (i.is_open ? "Buka" : "Tutup") + "%2C" + (i.is_open ? "%20Jam%20Buka%20%3A%20" + i.openTime + "%2C%20Jam%20Tutup%20%3A%20" + i.closeTime + "%0A" : "%0A"))
+        }
+        let text = "Halo%20emam%20Indonesia%20%21%0A%0APerkenalkan%20saya%20" + data.ownerName + "%20sebagai%20pemilik%20dari%20tempat%20makan%20" + data.placeName + "%20saya%20yang%20beralamatkan%20di%20" + data.placeAddress + "%2C%20ingin%20mengklain%20tempat%20makan%20saya%20ini.%20Untuk%20data%20syarat%20klaimnya%2C%20adalah%20%3A%0A%0ANama%20Tempat%20Makan%20%3A%20" + data.placeName + "%0AAlamat%20%3A%20" + data.placeAddress + "%0ANama%20Pemilik%20%3A%20" + data.ownerName + "%0ANomor%20Telepon%20%3A%20" + data.ownerPhoneNumber + "%0AJam%20Operasional%20%3A%20%0A" + operationalTimes + "%0ASaya%20tunggu%20kabar%20selanjutnya%20dari%20emam%20Indonesia.%20Atas%20perhatiannya%2C%20saya%20ucapkan%20terima%20kasih%20%21"
+        //Send to Email Area
+        let jamOperasional = "";
+        for (let i of data.operational_times) {
+            jamOperasional = jamOperasional.concat("- " + i.day + " " + (i.is_open ? "Buka" : "Tutup") + "," + (i.is_open ? " Jam Buka : " + i.openTime + ", Jam Tutup : " + i.closeTime + "<br>" : "<br>"))
+        }
+
         return res.json({
             message: "Sukses klaim tempat anda",
-            data: {id: claim._id}
+            data: {message: text}
         })
     } catch (error) {
         console.log(error)

@@ -49,8 +49,12 @@ var app = new Vue({
             try {
                 if (this.form.addons !== "")
                     this.form.addonsDate = new Date();
+                else if (this.form.addons === "")
+                    this.form.addonsDate = "";
                 if (this.form.subscription !== "")
                     this.form.subsDate = new Date();
+                else if (this.form.subscription === "")
+                    this.form.subsDate = "";
                 let formData = {...this.form};
                 let res = null;
                 if (formData._id) res = await this.updateOwner(formData);
@@ -132,7 +136,7 @@ var app = new Vue({
                 });
                 const data = await res.json();
                 this.placeForm = data.data;
-                if(this.placeForm.views === null || this.placeForm.views === "")
+                if (this.placeForm.views === null || this.placeForm.views === "")
                     this.placeForm.views = 0;
             } catch (error) {
                 console.log(error);
