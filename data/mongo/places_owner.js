@@ -15,7 +15,7 @@ const adminSchema = new Schema({
     addonsDate: Date,
     subsEndDate : "",
     addonsEndDate : "",
-    email : String,
+    username : String,
     password : String,
     options: Schema.Types.Mixed
 }, {timestamps: {}});
