@@ -1,0 +1,27 @@
+<div v-if="sideMenuIndex == 1">
+<h3 class="mt-2">Accepted Places</h3>
+<div class="columns" style="margin: 10px 0;">
+    <div class="column col-2">
+        <div class="form-group">
+            <label class="form-label" for="filterdraft">Filter</label>
+            <input class="form-input" type="text" id="filterdraft" placeholder="filter..." v-model="filterdraft">
+        </div>
+    </div>
+</div>
+<div style="max-height: 400px;overflow-y: auto;overflow-x: hidden; margin-bottom: 20px">
+    <datatable :columns="placeCols" :data="places_draft" class="table" :filter="filterdraft">
+        <template scope="{ row, column, index }">
+            <tr>
+                <td class="text-center">{{ index + 1 }}</td>
+                <td>{{ row.name }}</td>
+                <td v-if="!row.is_rejected">Waiting</td>
+                <td v-if="row.is_rejected == 'true'">Rejected</td>
+                <td v-if="row.is_rejected == 'false'">Accepted</td>
+                <td class="text-center">
+                    <a v-bind:href="'/admin/places/'+row._id+'/edit'" class="btn my-2">Update</a>
+                </td>
+            </tr>
+        </template>
+    </datatable>
+</div>
+</div>

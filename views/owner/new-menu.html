@@ -2,7 +2,7 @@
 <%- include('./partials/navbar.html') %>
 
 <div class="container" >
-    <h1>Edit menu</h1>
+    <h1>New menu</h1>
     <div class="columns" id="form-menu">
         <div class="column col-2" style="border-right: 1px solid #eee;">
             <%- include('./partials/menu_form_nav.html') %>
@@ -10,13 +10,12 @@
         <div class="column col-10">
             <%- include('./partials/menu_forms/general.html') %>
             <%- include('./partials/menu_forms/categories.html') %>
-            <%- include('./partials/menu_forms/options.html') %>
         </div>
     </div>
 </div>
 <script>
+    var ownerId = "<%= ownerId %>";
     var placeId = "<%= placeId %>";
-    var menuId = "<%= menuId %>";
-    var ownerId = "";
+    var menuId = null;
 </script>
 <%- include('./partials/footer.html') %>

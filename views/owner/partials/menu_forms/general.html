@@ -1,0 +1,102 @@
+<div v-show="sideMenuIndex == 0" class="column col-12">
+    <div class="columns">
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="name">Menu Name*</label>
+                <input class="form-input" type="text" id="name" v-model="form.name" required
+                       placeholder="Ex: Bubur Mantap">
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="category">Category*</label>
+                <select class="form-select" id="category" v-model="form.category" required>
+                    <option value="" selected disabled>Choose an option</option>
+                    <option v-for="type in formFieldValues.menu_categories" v-bind:value="type">{{ type.name }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="normal_price">Price*</label>
+                <input class="form-input" type="text" id="normal_price" v-model="form.prices.normal_price" required
+                       placeholder="Ex: 10000">
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="sale_price">Sale Price</label>
+                <input class="form-input" type="number" id="sale_price" v-model="form.prices.sale_price"
+                       placeholder="Ex: 10000">
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Photo</label>
+                <input type="file" v-on:change="onPhotoChange" id="photo" style="display:none;"/>
+                <button class="btn btn-primary btn-upload">
+                    <label for="photo">Click me to upload image</label>
+                </button>
+                <br/>
+                <br/>
+                <img ref="photo" v-show="formTmp.photo" width="200">
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="columns">
+            <div class="column col-3">
+                <div class="form-group">
+                    <label class="form-switch">
+                        <input type="checkbox" v-model="form.is_draft">
+                        <i class="form-icon"></i> Draft
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="column col-12">
+            <div class="form-group">
+                <label class="form-label" for="description">Description*</label>
+                <textarea v-model="form.description" id="description" class="form-input"
+                          placeholder="Tell about your place" rows="5"></textarea>
+            </div>
+        </div>
+                <div class="column col-12">
+                    <div class="form-group">
+                        <label class="form-label" for="btnvariant">Choice of variant</label>
+                        <button class="btn" id="btnvariant" v-on:click="addvariant">Add Variant</button>
+                    </div>
+                    <div class="columns" v-for="type in form.variant">
+                        <div class="column col-5">
+                            <div class="form-group">
+                                <label class="form-label" v-bind:for="'flavname'+type.id">Variant Name*</label>
+                                <input class="form-input" type="text" v-bind:id="'flavname'+type.id" v-model="type.name"
+                                       placeholder="Chocolate">
+                            </div>
+                        </div>
+                        <div class="column col-5">
+                            <div class="form-group">
+                                <label class="form-label" v-bind:for="'flavprices'+type.id">Variant Prices (Optional)</label>
+                                <input class="form-input" type="text" v-bind:id="'flavprices'+type.id" v-model="type.prices"
+                                       placeholder="5000">
+                            </div>
+                        </div>
+                        <div class="column col-1" style="padding-top: 37.5px;">
+                            <button class="btn" v-on:click="deletevariant(type.id)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+
+    <div style="clear: both;"></div>
+    <div style="float:right; margin-top: 10px;">
+        <button class="btn" v-on:click="onCancel">Cancel</button>
+        <button class="btn" v-on:click="onSave(true)" :disabled="isLoading()">Save & New</button>
+        <button class="btn" v-on:click="onSaveNew(true)" :disabled="isLoading()">Save & Close</button>
+    </div>
+</div>

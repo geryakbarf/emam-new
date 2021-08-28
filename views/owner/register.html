@@ -1,0 +1,64 @@
+<%- include('./partials/header.html') %>
+
+<div class="container">
+    <div class="columns" id="form-owner">
+
+        <div class="column col-10">
+            <h1>Register</h1>
+            <div class="columns">
+                <div class="column col-6">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nama Pemilik*</label>
+                        <input class="form-input" id="name" placeholder="Ex: Gery Akbar Fauzi" required type="text"
+                               v-model="form.name">
+                    </div>
+                </div>
+                <div class="column col-6">
+                    <div class="form-group">
+                        <label class="form-label" for="username">Username*</label>
+                        <input class="form-input" id="username" placeholder="Ex: geryakbarfauzi@gmail.com" required
+                               type="text"
+                               v-model="form.username">
+                    </div>
+                </div>
+                <div class="column col-6">
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password*</label>
+                        <input class="form-input" id="password" placeholder="Masukkan Password" required
+                               type="password" v-model="form.password">
+                    </div>
+                </div>
+                <div class="column col-6">
+                    <div class="form-group">
+                        <label class="form-label" for="repassword">Re-type Password*</label>
+                        <input class="form-input" id="repassword" placeholder="Masukkan Kembali Password" required
+                               type="password" v-model="repassword">
+                    </div>
+                </div>
+                <div class="column col-6">
+                    <div class="form-group">
+                        <label class="form-label" for="contactType">Tipe Nomor*</label>
+                        <select class="form-select" id="contactType" required v-model="form.contactType">
+                            <option disabled selected value="">Pilih tipe nomor</option>
+                            <option value="022">022</option>
+                            <option value="+62">+62</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="column col-6">
+                    <div class="form-group">
+                        <label class="form-label" for="contactNumber">Nomor Kontak*</label>
+                        <input class="form-input" id="contactNumber" placeholder="Ex: 85156" required type="number"
+                               v-model="form.contactNumber">
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+                <div style="float:right; margin-top: 10px;">
+                    <!-- <button class="btn" v-on:click="onSave(false)">Save</button> -->
+                    <button class="btn" v-on:click="onRegister">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <%- include('./partials/footer.html') %>

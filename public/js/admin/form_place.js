@@ -184,7 +184,16 @@ var app = new Vue({
         },
         _onSaveParams: async function () {
             this.form.operationalTimesStatus = this.operationalTimesStatus;
+            if (placeId)
+                this.form._id = placeId;
             let formData = {...this.form};
+            if (ownerId && ownerId !== "") {
+                formData.is_requested = true;
+                formData.is_rejected = "";
+            } else {
+                formData.is_requested = false;
+                formData.is_rejected = "";
+            }
             let photoTmp = this.formTmp.photo;
             let photo = formData.photo;
             let [parkir] = this.formFieldValues.parkirs.filter(e => (e.id == formData.parkir));
@@ -220,15 +229,30 @@ var app = new Vue({
                     this.form._id = res.data.id;
                 toastr.success(res.message)
                 if (close) {
+                    //menambahkan place ke owner
+                    if (ownerId && ownerId !== "") {
+                        const formData = {placeID: this.form._id, ownerId: ownerId};
+                        const res = await fetch('/api/v1/owners-insert', {
+                            method: "POST",
+                            body: JSON.stringify(formData),
+                            headers: {'Content-Type': "application/json"}
+                        });
+                        const data = await res.json();
+                        toastr.success(data.message)
+                    }
+                    //
                     let _this = this
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
-                        window.location = "/admin/places/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
+                        if (ownerId && ownerId !== "") {
+                            window.location = "/panel/owner/places/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
+                        } else
+                            window.location = "/admin/places/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
                     }, 1000)
                 }
             } catch (error) {
                 console.log(error);
-                toastr.error("Duh ada error, coba tanya Ala Rai")
+                toastr.error("Duh ada error, coba tanya Gery Akbar")
             }
 
         },
@@ -369,6 +393,7 @@ var app = new Vue({
         },
         loadPlaceCategories: async function () {
             try {
+                console.log("ID Owner : " + ownerId)
                 const res = await fetch('/api/v1/place-categories');
                 const data = await res.json();
                 this.formFieldValues.place_categories = data.map(e => ({id: e._id, text: e.name}))
@@ -469,6 +494,7 @@ var app = new Vue({
         },
         loadPlace: async function () {
             if (!placeId) return;
+            console.log("ID : " + placeId)
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('nav'))
                 this.sideMenuIndex = urlParams.get('nav')
@@ -520,9 +546,9 @@ var app = new Vue({
             }
         },
         sendWhatsapp: function (number, type) {
-            if(type == "022"){
+            if (type == "022") {
                 toastr.error("Nomor ini tidak terdaftar di whatsapp");
-            }else{
+            } else {
                 location.href = "https://api.whatsapp.com/send/?phone=62" + number + "&text=Hallo%20kak%2C%20kami%20dari%20emam.id%20ingin%20bertanya%20apakah%20akan%20ada%20pembaharuan%20dari%20tempat%20makan%20kakak%3F%0Akami%20ingin%20memperbarui%20data%20tempat%20makan%20kakak%20yang%20ada%20di%20emam.id&app_absent=0";
             }
         },
@@ -550,11 +576,14 @@ var app = new Vue({
         editMenu: function (placeId, menuId) {
             // console.log(`/admin/places/${placeId}/menus/${menuId}`);
             window.removeEventListener('beforeunload', this.leaving, true)
-            window.location = `/admin/places/${placeId}/menus/${menuId}`
+            if (ownerId && ownerId !== "")
+                window.location = `/panel/owner/places/${placeId}/menus/${menuId}`
+            else
+                window.location = `/admin/places/${placeId}/menus/${menuId}`
         },
         onCancel: function () {
             window.addEventListener('beforeunload', this.leaving, true);
-            window.location = `/admin/places`
+            window.history.back();
         },
         sameHours: function () {
             let openTime = this.form.operational_times[0].openTime;

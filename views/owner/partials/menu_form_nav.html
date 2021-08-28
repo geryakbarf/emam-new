@@ -1,0 +1,11 @@
+<ul class="nav">
+    <li v-bind:class="[isActiveSideMenu(0) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(0)">General</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(1) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(1)">Categories</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(2) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(2)">Options</a>
+    </li>
+</ul>
