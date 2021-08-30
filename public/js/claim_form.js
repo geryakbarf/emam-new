@@ -6,16 +6,8 @@ var app = new Vue({
             placeName: placeName,
             ownerName: '',
             ownerPhoneNumber: '',
-            placeAddress: '',
-            operational_times: [
-                {day: 'Senin', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Selasa', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Rabu', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Kamis', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Jumat', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Sabtu', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Minggu', openTime: '00:00', closeTime: '00:00', is_open: false},
-            ],
+            ownerUsername: '',
+            ownerPassword: '',
         },
         robot: true
     },
@@ -37,9 +29,18 @@ var app = new Vue({
                 swal("Nomor Telepon Salah", "Mohon masukan nomor telepon yang benar!", "error");
                 return false;
             }
-            //validasi alamat
-            if (formData.placeAddress.length < 1) {
-                swal("Alamat tempat Kosong", "Mohon masukan alamat tempat!", "error");
+            //validasi jika form username dimasukin kosong
+            if (!formData.ownerUsername) {
+                swal("Username anda tidak valid", "Mohon masukan username yang benar!", "error");
+                return false;
+            }
+            //validasi jika form password dimasukin salah
+            if (formData.ownerPassword.length < 5) {
+                swal("Password yang diinputkan masih lemah", "Pastikan password yang diisi diantara 5-20!", "error");
+                return false;
+            }
+            if (formData.ownerPassword != formData.ownerConfirmPassword) {
+                swal("Password dan Konfirmasi Password anda tidak valid", "Pastikan password yang diisi sudah benar!", "error");
                 return false;
             }
             return true
