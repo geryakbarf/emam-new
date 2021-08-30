@@ -22,58 +22,27 @@
                                 <div class="col-md-12">
                                     <h4 class="txt-header my-3">Nama Pemilik/Manajer</h4>
                                     <input class="form-control" placeholder="Cth: Budi Manager" required type="text"
-                                        v-model="form.ownerName">
+                                        v-model="form.name">
                                 </div>
                                 <div class="col-md-12">
                                     <h4 class="txt-header my-3">Nomor Telepon</h4>
                                     <input class="form-control" placeholder="Cth: 0891000xxx" required type="text"
-                                        v-model="form.ownerPhoneNumber">
+                                        v-model="form.contact">
                                 </div>
                                 <div class="col-md-12">
-                                    <h4 class="txt-header my-3">Alamat Restoran</h4>
-                                    <input class="form-control" placeholder="Cth: jl. berlian indah No 28" type="text"
-                                        v-model="form.placeAddress">
+                                    <h4 class="txt-header my-3">Username</h4>
+                                    <input class="form-control" placeholder="Cth: user123" required type="text"
+                                        v-model="form.username">
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="row my-2">
-                            <div class="col-12">
-                                <h5 style="font-weight: bold;">Jadwal Tempat Makan</h5>
-                                <p style="color: #707070;">Kami akan mengunjungi tempat anda sesuai jam operasional
-                                    setelah kami mengkonfirmasi terlebih dahulu</p>
-                            </div>
-                            <div class="row">
-
-                            </div>
-                            <div class="col-4">
-                                <h5 class="txt-title">Hari</h5>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="txt-title">Jam Buka</h5>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="txt-title">Jam Tutup</h5>
-                            </div>
-                            <div class="col-12" v-for="(op, idx) in form.operational_times">
-                                <div class="row my-2">
-                                    <div class="col-4 my-auto">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" v-bind:id="op.day"
-                                                v-model="op.is_open" value="">
-                                            <label class="form-check-label" v-bind:for="op.day">{{op.day}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <input class="form-control" id="example-time-input" type="time"
-                                            v-bind:id="'openTime-'+idx" v-model="op.openTime">
-                                    </div>
-                                    <div class="col-4">
-                                        <input class="form-control" id="example-time-input" type="time"
-                                            v-bind:id="'closeTime-'+idx" v-model="op.closeTime">
-                                    </div>
+                                <div class="col-md-12">
+                                    <h4 class="txt-header my-3">Password</h4>
+                                    <input class="form-control" placeholder="Mohon diisi dengan benar" required type="password"
+                                        v-model="form.password">
+                                </div>
+                                <div class="col-md-12">
+                                    <h4 class="txt-header my-3">Konfirmasi Password</h4>
+                                    <input class="form-control" placeholder="Mohon diisi dengan benar" required type="password"
+                                        v-model="ownerConfirmPassword">
                                 </div>
                             </div>
                         </div>
@@ -85,8 +54,7 @@
                             </vue-recaptcha>
                         </div>
 
-                        <button class="btn btn-primary-emam mt-3" v-on:click="onSave(true)">Kirim
-                            Pesan
+                        <button class="btn btn-primary-emam mt-3" v-on:click="onSave(true)">Submit
                         </button>
                     </div>
                     <div class="col-md-5 col-12 text-center my-4">

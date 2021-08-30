@@ -4,44 +4,48 @@ var app = new Vue({
         form: {
             placeId: placeID,
             placeName: placeName,
-            ownerName: '',
-            ownerPhoneNumber: '',
-            placeAddress: '',
-            operational_times: [
-                {day: 'Senin', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Selasa', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Rabu', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Kamis', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Jumat', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Sabtu', openTime: '00:00', closeTime: '00:00', is_open: false},
-                {day: 'Minggu', openTime: '00:00', closeTime: '00:00', is_open: false},
-            ],
+            name: '',
+            contact: '',
+            username: '',
+            password: '',
+            placesId : []
         },
+        ownerConfirmPassword : "",
         robot: true
     },
     watch: {},
     methods: {
         validation: function (formData) {
             //validasi Nama Manager
-            if (formData.ownerName.length < 1) {
+            if (formData.name.length < 1) {
                 swal("Nama Pemilik Kosong", "Mohon masukan nama pemilik atau manajer!", "error");
                 return false;
             }
             //validasi nomor kontak
-            if (formData.ownerPhoneNumber.length < 1) {
+            if (formData.contact.length < 1) {
                 swal("Nomor Telepon Kosong", "Mohon masukan nomor telepon untuk dihubungi!", "error");
                 return false;
             }
             //validasi jika form kontak dimasukin selain angka
-            if (isNaN(formData.ownerPhoneNumber)) {
+            if (isNaN(formData.contact)) {
                 swal("Nomor Telepon Salah", "Mohon masukan nomor telepon yang benar!", "error");
                 return false;
             }
             //validasi alamat
-            if (formData.placeAddress.length < 1) {
-                swal("Alamat tempat Kosong", "Mohon masukan alamat tempat!", "error");
-                return false;
-            }
+            //validasi jika form username dimasukin kosong
+             if (!formData.username) {
+                 swal("Username anda tidak valid", "Mohon masukan username yang benar!", "error");
+                 return false;
+             }
+             //validasi jika form password dimasukin salah
+             if (formData.password.length < 5) {
+                 swal("Password yang diinputkan masih lemah", "Pastikan password yang diisi diantara 5-20!", "error");
+                 return false;
+             }
+             if (formData.password != this.ownerConfirmPassword) {
+                 swal("Password dan Konfirmasi Password anda tidak valid", "Pastikan password yang diisi sudah benar!", "error");
+                 return false;
+             }
             return true
 
         },
@@ -59,12 +63,12 @@ var app = new Vue({
 
             try {
                 let res = await this.insertClaim(formData);
-                swal("Terima kasih!", "Anda Akan Segera Di Direct ke Aplikasi Whatsapp", "success");
+                swal("Terima kasih!", "Anda Akan Segera Di Direct ke Halaman Login", "success");
                 if (close) {
                     let _this = this
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
-                        location.href = "https://api.whatsapp.com/send/?phone=6285156688480&text=" + res.data.message + "&app_absent=0"
+                        window.location = "/panel/owner/login"
                         // window.location = "/p/" + formData.placeId
                     }, 1000)
                 }
