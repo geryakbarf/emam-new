@@ -5,7 +5,8 @@ var app = new Vue({
             placeId: placeID,
             placeName: placeName,
             name: '',
-            contact: '',
+            contactType: '',
+            contactNumber: '',
             username: '',
             password: '',
             placesId : []
@@ -21,13 +22,18 @@ var app = new Vue({
                 swal("Nama Pemilik Kosong", "Mohon masukan nama pemilik atau manajer!", "error");
                 return false;
             }
+            // validasi jika form jenis kontak belum ada
+            if (!formData.contactType) {
+                swal("Jenis Nomor Telepon Kosong", "Mohon masukan jenis nomor telepon dengan benar!", "error");
+                return false;
+            }
             //validasi nomor kontak
-            if (formData.contact.length < 1) {
+            if (formData.contactNumber.length < 1) {
                 swal("Nomor Telepon Kosong", "Mohon masukan nomor telepon untuk dihubungi!", "error");
                 return false;
             }
             //validasi jika form kontak dimasukin selain angka
-            if (isNaN(formData.contact)) {
+            if (isNaN(formData.contactNumber)) {
                 swal("Nomor Telepon Salah", "Mohon masukan nomor telepon yang benar!", "error");
                 return false;
             }
@@ -69,7 +75,6 @@ var app = new Vue({
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
                         window.location = "/panel/owner/login"
-                        // window.location = "/p/" + formData.placeId
                     }, 1000)
                 }
             } catch (error) {
