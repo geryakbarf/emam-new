@@ -21,8 +21,9 @@
                     <td v-if="!row.is_sticker">No</td>
                     <td>{{ row.updatedAt }}</td>
                     <td class="text-center">
-                        <button class="btn btn-primary my-2" v-on:click="updateTime(row._id, row.name)">Update Time</button>
-                        <a v-bind:href="'/admin/approvals/'+row._id+'/edit'" class="btn my-2">Update</a>
+                        <button class="btn btn-primary my-2" v-on:click="acceptRequest(row._id, row.contactNumber, row.contactType, row.name)">Accept</button>
+                        <button class="btn my-2" v-on:click="rejectRequest(row._id, row.contactNumber, row.contactType, row.name)">Reject</button>
+                        <!-- <a v-bind:href="'/admin/approvals/'+row._id+'/edit'" class="btn btn-primary my-2">Update</a> -->
                     </td>
                 </tr>
             </template>
