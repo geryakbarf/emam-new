@@ -1,0 +1,32 @@
+<div v-if="sideMenuIndex == 0">
+    <h3 class="mt-2">All Approvals</h3>
+    <div class="columns" style="margin: 10px 0;">
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label" for="filter">Filter</label>
+                <input class="form-input" type="text" id="filter" placeholder="filter..." v-model="filter">
+            </div>
+        </div>
+    </div>
+    <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+        <datatable :columns="approvalCols" :data="approvals" class="table" :filter="filter">
+            <template scope="{ row, column, index }">
+                <tr>
+                    <td class="text-center">{{ index + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.idx }}</td>
+                    <td v-if="row.is_partner">Yes</td>
+                    <td v-if="!row.is_partner">No</td>
+                    <td v-if="row.is_sticker">Yes</td>
+                    <td v-if="!row.is_sticker">No</td>
+                    <td>{{ row.updatedAt }}</td>
+                    <td class="text-center">
+                        <button class="btn btn-primary my-2" v-on:click="acceptRequest(row._id, row.contactNumber, row.contactType, row.name)">Accept</button>
+                        <button class="btn my-2" v-on:click="rejectRequest(row._id, row.contactNumber, row.contactType, row.name)">Reject</button>
+                        <!-- <a v-bind:href="'/admin/approvals/'+row._id+'/edit'" class="btn btn-primary my-2">Update</a> -->
+                    </td>
+                </tr>
+            </template>
+        </datatable>
+    </div>
+</div>

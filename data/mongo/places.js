@@ -61,7 +61,9 @@ const schema = new Schema({
     galleries: [gallerySchema],
     covid: [String],
     payment_detail: [paymentDetailSchema],
-    views: Number
+    views: Number,
+    is_requested : Boolean,
+    is_rejected : String
 }, {timestamps: {}});
 
 schema.index({name: 'text', address: 'text', city: 'text'})

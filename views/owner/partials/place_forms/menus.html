@@ -1,0 +1,45 @@
+<div v-if="sideMenuIndex == 6">
+    <h1>Menus</h1>
+    <a class="btn btn-primary" v-bind:href="'/panel/owner/places/'+form._id+'/menus/new'">New Menu</a>
+    <div class="columns" style="margin: 10px 0;">
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label" for="search">Search</label>
+                <input class="form-input" type="text" id="search" placeholder="Search Menu" v-model="search">
+            </div>
+        </div>
+    </div>
+    <div v-for="cate in filteredCategory">
+        <h2 style="margin: 50px 0 30px;">{{ cate }}</h2>
+        <div class="columns" style="margin-top: 10px;">
+            <div class="column col-4" style="padding: 10px;" v-for="menu in filteredMenu" v-if="menu.category === cate">
+                <div class="card" style="height: 100%; border-radius: 15px;" v-on:click="editMenu(form._id,menu._id)">
+                    <div class="columns">
+                        <div class="column col-5">
+                            <div class="card-image" style="height: 120px; width: 120px; border-radius: 15px;"><img
+                                    class="img-responsive" style="height: 100%; width: 100%; object-fit: cover;"
+                                    v-bind:alt="menu.name"
+                                    v-bind:src="menu.photo?menu.photo.path:'/assets/images/emam-menu-no-photos.jpg'">
+                            </div>
+                        </div>
+                        <div class="column col-7">
+                            <div class="card-header">
+                                <!-- <button class="btn btn-primary float-right"><i class="icon icon-plus"></i></button> -->
+                                <div v-if="menu.is_draft">
+                                    <p style="color: #FBAC18; margin: 0;">Draft</p>
+                                </div>
+                                <div v-else>
+                                    <p style="color: #b5d334; margin: 0;">Online</p>
+                                </div>
+                                <div class="card-title h6">{{ menu.name }}</div>
+                                <p>Rp. {{ menu.prices.normal_price }}</p>
+                                <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                                    {{ menu.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

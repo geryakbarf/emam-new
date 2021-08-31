@@ -1,0 +1,21 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container" style="margin-top: 10px;">
+    <div class="columns mt-2" id="list-approval">
+        <div class="column col-2" style="border-right: 1px solid #eee;">
+            <%- include('./partials/list_approval_nav.html') %>
+        </div>
+        <div class="column col-10">
+            <%- include('./partials/list_approvals/all_approvals.html') %>
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+</div>
+<% if(locals.name){%>
+<script>
+    var username = <%- JSON.stringify(name) %>;
+</script>
+<%}%>
+<%- include('./partials/footer.html') %>

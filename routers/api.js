@@ -13,6 +13,7 @@ const placeHandler = require('../handlers/v1/places');
 const menuHandler = require('../handlers/v1/menus');
 const imageHandler = require('../handlers/v1/images');
 const webHandler = require('../handlers/v1/web');
+const approvalHandler = require('../handlers/v1/approvals');
 
 v1.get('/place-categories', placeCatHandler.getAll)
 v1.get('/cuisines', cuisineHandler.getAll)
@@ -50,6 +51,11 @@ v1.post('/upload-image-s3', imageHandler.uploadImageS3)
 v1.delete('/delete-images', imageHandler.deleteImages)
 v1.post('/claim/send-claim', placeHandler.insertClaim)
 v1.post('/tell-us', webHandler.sendEmail)
+
+v1.get('/approvals', approvalHandler.getRequestedPlaces)
+v1.get('/approvals/:id', approvalHandler.getOneRequestedPlace)
+v1.put('/approvals/accept', approvalHandler.acceptRequest)
+v1.put('/approvals/reject', approvalHandler.rejectRequest)
 
 router.use('/v1', v1);
 

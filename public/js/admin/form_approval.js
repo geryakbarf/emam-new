@@ -1,6 +1,6 @@
 const {QRCanvas: QrCanvas} = qrcanvas.vue;
 var app = new Vue({
-    el: '#form-place',
+    el: '#form-approval',
     data: {
         sideMenuIndex: 0,
         search: '',
@@ -131,39 +131,8 @@ var app = new Vue({
         setSideMenuIndex: function (idx) {
             this.sideMenuIndex = idx
         },
-        isExist: function (text) {
-            var condition = false;
-            for (var i = 0; i < this.form.payment_detail.length; i++) {
-                if (this.form.payment_detail[i].name == text) {
-                    condition = true;
-                }
-            }
-            return condition;
-        },
         isActiveSideMenu: function (id) {
             return this.sideMenuIndex == id
-        },
-        isFacilityChecked: function (facility) {
-            let [first] = this.form.facilities.filter(e => e.name == facility);
-            return first ? true : false;
-        },
-        onFacilityChecked: function (facility) {
-            if (!this.isFacilityChecked(facility)) {
-                this.form.facilities.push({name: facility})
-            } else {
-                this.form.facilities = this.form.facilities.filter(e => e.name != facility)
-            }
-        },
-        isCovidProtChecked: function (prot) {
-            let [first] = this.form.covid.filter(e => e == prot.type);
-            return first ? true : false;
-        },
-        onCovidProtChecked: function (prot) {
-            if (!this.isCovidProtChecked(prot)) {
-                this.form.covid.push(prot.type)
-            } else {
-                this.form.covid = this.form.covid.filter(e => e != prot.type)
-            }
         },
         onPhotoChange: function (e) {
             try {
@@ -256,99 +225,6 @@ var app = new Vue({
             }
 
         },
-        addGalleryFile: function (e, groupId) {
-            let _this = this;
-            const files = e.target.files || e.dataTransfer.files;
-            ([...files]).forEach(function (f) {
-                let idx = _this.formTmp.galleries.findIndex(e => e.id == groupId);
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    _this.formTmp.galleries[idx].images.push({file: f, imgData: e.target.result});
-                }
-                reader.readAsDataURL(f);
-            });
-
-        },
-        deleteGalleryFile: function (groupId, idx) {
-            this.formTmp.galleries.map(e => {
-                if (e.id == groupId)
-                    e.images = e.images.filter((e1, i) => (i != idx));
-
-                return e;
-            })
-
-        },
-        addGalleryGroup: function (catName) {
-            let id = CryptoJS.MD5(new Date().toTimeString()).toString();
-            this.formTmp.galleries.push(
-                {id, category: catName, images: []}
-            )
-        },
-        deleteGalleryGroup: function (groupId) {
-            if (this.form._id != null) {
-                if (confirm("Are you sure want to delete this gallery group?"))
-                    this.formTmp.galleries = this.formTmp.galleries.filter((e) => (e.id != groupId));
-            } else {
-                this.formTmp.galleries = this.formTmp.galleries.filter((e) => (e.id != groupId));
-            }
-
-        },
-        uploadGalleryImage: async function () {
-            let currImages = this.form.galleries;
-            let uploads = [];
-            this.formTmp.galleries.forEach(e => {
-                e.images.forEach(e1 => {
-                    uploads.push({category: e.category, file: e1.file})
-                })
-            })
-            console.log("currImages", currImages);
-
-            let newImages = uploads.filter(e => currImages.map(e2 => e2.path).indexOf(e.file.name) === -1);
-            console.log("newImages", newImages);
-
-            let imagesNeedDelete = currImages.filter(e => {
-                return uploads.map(e2 => (e2.file.name)).indexOf(e.path) === -1;
-            });
-            console.log("imagesNeedDelete", imagesNeedDelete);
-
-            (async () => {
-                const images = imagesNeedDelete.map(e => (e.path));
-                if (images.length > 0) {
-                    const res = await fetch('/api/v1/delete-images', {
-                        method: "DELETE",
-                        body: JSON.stringify({images}),
-                        headers: {'Content-Type': "application/json"}
-                    },);
-                    const data = await res.json();
-                    console.log(data);
-                }
-
-            })()
-
-            currImages = currImages.filter(e => imagesNeedDelete.map(e2 => e2.path).indexOf(e.path) === -1);
-            console.log("currImages", currImages);
-
-            newImages = newImages.map(async (e) => {
-                try {
-                    let formData = new FormData();
-                    formData.append('file', e.file)
-                    const params = {method: 'POST', body: formData};
-                    const res = await fetch('/api/v1/upload-image-s3', params);
-                    if (res.status != 200) throw Error("Upload gallery gagal!");
-                    const data = await res.json();
-                    const {path, options} = data.data;
-                    return Promise.resolve({category: e.category, path, options});
-                } catch (error) {
-                    return Promise.reject(error);
-                }
-            });
-
-            newImages = await Promise.all(newImages);
-
-            console.log([...currImages, ...newImages]);
-
-            return [...currImages, ...newImages];
-        },
         photoUpload: async function () {
             try {
                 let formData = new FormData();
@@ -359,21 +235,6 @@ var app = new Vue({
                 const data = await res.json();
                 return Promise.resolve(data.data);
             } catch (error) {
-                return Promise.reject(error);
-            }
-
-        },
-        createPlace: async function (formData) {
-            try {
-                const res = await fetch('/api/v1/places', {
-                    method: "POST",
-                    body: JSON.stringify(formData),
-                    headers: {'Content-Type': "application/json"}
-                });
-                const data = await res.json();
-                return Promise.resolve(data);
-            } catch (error) {
-                console.log(error);
                 return Promise.reject(error);
             }
         },
@@ -391,93 +252,6 @@ var app = new Vue({
                 return Promise.reject(error);
             }
         },
-        loadPlaceCategories: async function () {
-            try {
-                console.log("ID Owner : " + ownerId)
-                const res = await fetch('/api/v1/place-categories');
-                const data = await res.json();
-                this.formFieldValues.place_categories = data.map(e => ({id: e._id, text: e.name}))
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadCuisines: async function () {
-            try {
-                const res = await fetch('/api/v1/cuisines');
-                const data = await res.json();
-                this.formFieldValues.cuisines = data.map(e => ({text: e.name}))
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadPayments: async function () {
-            try {
-                const res = await fetch('/api/v1/payments');
-                const data = await res.json();
-                this.formFieldValues.payments = data.map(e => ({code: e.code, text: e.name}))
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadPaymentsCat: async function () {
-            try {
-                const res = await fetch('/api/v1/paymentscat');
-                const data = await res.json();
-                this.formFieldValues.paymentscat = data.map(e => ({name: e.name, type: e.type}));
-                console.log(this.formFieldValues.paymentscat);
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadFacilities: async function () {
-            try {
-                const res = await fetch('/api/v1/facilities');
-                const data = await res.json();
-                this.formFieldValues.facilities = data.map(e => (e.name))
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadCovidProtocols: async function () {
-            try {
-                const res = await fetch('/api/v1/covid-protocols');
-                const data = await res.json();
-                this.formFieldValues.covid_prot = data
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadGalleriesFromData: async function () {
-            _.uniq(this.form.galleries.map(e => (e.category)))
-                .forEach(e => {
-                    this.addGalleryGroup(e);
-                });
-
-            const catImages = this.formTmp.galleries.map(async (e) => {
-                let images = this.form.galleries
-                    .filter(e1 => e1.category == e.category)
-                    .map(async (e2) => {
-                        const res = await fetch(e2.path);
-                        const blob = await res.blob();
-                        let file = new File([blob], e2.path, {type: blob.type});
-                        let imgData = await (() => {
-                            return new Promise((resolve) => {
-                                let reader = new FileReader();
-                                reader.onload = function (e3) {
-                                    resolve(e3.target.result)
-                                }
-                                reader.readAsDataURL(file);
-                            })
-                        })();
-
-                        return {file, imgData};
-                    })
-                images = await Promise.all(images)
-                return {id: e.id, category: e.category, images};
-            })
-            this.formTmp.galleries = await Promise.all(catImages);
-        },
-
         loadPhotoFromData: async function () {
             if (!this.form.photo) return;
             const _this = this;
@@ -499,48 +273,12 @@ var app = new Vue({
             if (urlParams.get('nav'))
                 this.sideMenuIndex = urlParams.get('nav')
             try {
-                const res = await fetch(`/api/v1/places/${placeId}`);
+                const res = await fetch(`/api/v1/approvals/${placeId}`);
                 const data = await res.json();
                 this.form = data.data;
                 //
-                if (data.data.operationalTimesStatus !== undefined)
-                    this.operationalTimesStatus = this.form.operationalTimesStatus;
-                //
-                this.options.data = 'https://emam.id/qr/' + this.form.slug;
-                this.form.categories = this.form.categories.map(e => ({id: e.id, text: e.name}));
-                this.form.payments = this.form.payments.map(e => ({code: e.code, text: e.name}));
-                if (this.form.parkir)
-                    this.form.parkir = this.form.parkir.id;
-                this.formFieldValues.payments = this.form.payments;
-                //
-                if (!this.form.call_to_actions[7])
-                    this.form.call_to_actions.push({type: "linkmenu", value: ''});
-                if (!this.form.call_to_actions[1].draft)
-                    this.form.call_to_actions[1].draft = false;
-                if (!this.form.payment_detail)
-                    this.form.payment_detail = [];
-                if (!this.form.is_sticker)
-                    this.form.is_sticker = false;
-                if (!this.form.bio)
-                    this.form.bio = '';
-                if (!this.form.contactType) {
-                    this.form.contactType = '';
-                    this.form.contactNumber = '';
-                }
-                //
-                this.loadGalleriesFromData();
                 this.loadPhotoFromData();
                 this.isLoading = false;
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        loadMenus: async function () {
-            if (!placeId) return;
-            try {
-                const res = await fetch(`/api/v1/places/${placeId}/menus`);
-                const data = await res.json();
-                this.menus = data.data;
             } catch (error) {
                 console.log(error);
             }
@@ -561,62 +299,10 @@ var app = new Vue({
             } catch (error) {
                 console.log(error);
             }
-        },
-        addPaymentDetail: function (tipe) {
-            let id = CryptoJS.MD5(new Date().toString()).toString();
-            this.form.payment_detail.push({id: id, type: tipe, name: '', condition: ''})
-        },
-        deletePaymentDetail: function (id) {
-            this.form.payment_detail = this.form.payment_detail.filter(e => e.id != id);
-        },
-        leaving: function (event) {
-            event.preventDefault();
-            event.returnValue = '';
-        },
-        editMenu: function (placeId, menuId) {
-            // console.log(`/admin/places/${placeId}/menus/${menuId}`);
-            window.removeEventListener('beforeunload', this.leaving, true)
-            if (ownerId && ownerId !== "")
-                window.location = `/panel/owner/places/${placeId}/menus/${menuId}`
-            else
-                window.location = `/admin/places/${placeId}/menus/${menuId}`
-        },
-        onCancel: function () {
-            window.addEventListener('beforeunload', this.leaving, true);
-            window.history.back();
-        },
-        sameHours: function () {
-            let openTime = this.form.operational_times[0].openTime;
-            let closeTime = this.form.operational_times[0].closeTime;
-            let is24Hours = this.form.operational_times[0].is_24Hours;
-            for (var i = 1; i <= this.form.operational_times.length; i++) {
-                this.form.operational_times[i].openTime = openTime;
-                this.form.operational_times[i].closeTime = closeTime;
-                this.form.operational_times[i].is_24Hours = is24Hours;
-            }
-        },
-        onDeleteData: async function () {
-            if (confirm('Are you sure want to delete this data?')) {
-                const res = await fetch(`/api/v1/places/${placeId}`, {method: "DELETE"});
-                if (res.ok) {
-                    toastr.success("Success to delete data")
-                    window.location = `/admin/places`
-                } else toastr.error("Failed to delete data");
-            } else {
-
-            }
-
-        },
+        }
     },
     mounted() {
         this.loadPlace()
-        this.loadPlaceCategories()
-        this.loadCuisines()
-        this.loadPayments()
-        this.loadFacilities()
-        this.loadCovidProtocols()
-        this.loadMenus()
-        this.loadPaymentsCat()
         this.loadOwner()
     },
     computed: {

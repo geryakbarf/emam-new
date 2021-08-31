@@ -15,8 +15,11 @@ var app = new Vue({
             addonsEndDate: "",
             oriaddonsDate: "",
             orisubsDate: "",
+            username: "",
+            password: "",
             placesId: []
         },
+        repassword: "",
         placeForm: {
             _id: null,
             name: '',
@@ -154,6 +157,35 @@ var app = new Vue({
             }
 
         },
+        onRegister: async function () {
+            if(this.form.password !== this.repassword){
+                toastr.error("Password dan Re-password harus sama!")
+                return;
+            }
+            let formData = {...this.form};
+            try {
+                const res = await fetch('/api/v1/owners', {
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {'Content-Type': "application/json"}
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    toastr.success("Berhasil mendaftar! Silahkan login")
+                    let _this = this
+                    setTimeout(() => {
+                        window.removeEventListener('beforeunload', _this.leaving, true)
+                        window.location = "/panel/owner/login"
+                    }, 1000)
+                }
+                else {
+                    toastr.error("Terjadi kesalahan saat mendaftar, harap ganti username anda atau periksa koneksi anda!")
+                }
+            } catch (error) {
+                console.log(error);
+                toastr.error("Terjadi kesalahan saat mendaftar, harap ganti username anda atau periksa koneksi anda!");
+            }
+        }
     },
     mounted() {
         this.loadOwner()

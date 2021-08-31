@@ -175,7 +175,10 @@ var app = new Vue({
                     let _this = this
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
-                        window.location = `/admin/places/${placeId}/menus/new`
+                        if (ownerId && ownerId !== "")
+                            window.location = `/panel/owner/places/${placeId}/menus/new`
+                        else
+                            window.location = `/admin/places/${placeId}/menus/new`
                         this.loading = false;
                     }, 1000)
                 }
@@ -226,7 +229,10 @@ var app = new Vue({
                     let _this = this
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
-                        window.location = `/admin/places/${placeId}/edit?nav=6`
+                        if (ownerId && ownerId !== "")
+                            window.location = `/panel/owner/places/${placeId}/edit?nav=6`
+                        else
+                            window.location = `/admin/places/${placeId}/edit?nav=6`
                         this.loading = false;
                     }, 1000)
                 }
@@ -273,7 +279,10 @@ var app = new Vue({
                     var _this = this;
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
-                        window.location = `/admin/places/${placeId}/edit?nav=6`
+                        if (ownerId && ownerId !== "")
+                            window.location = `/panel/owner/places/${placeId}/edit?nav=6`
+                        else
+                            window.location = `/admin/places/${placeId}/edit?nav=6`
                     }, 1000)
                 } catch (error) {
                     console.log(error);
@@ -297,7 +306,7 @@ var app = new Vue({
         },
         onCancel: function () {
             window.addEventListener('beforeunload', this.leaving, true);
-            window.location = `/admin/places/${placeId}/edit?nav=6`
+            window.history.back();
         },
 
         loadPhotoFromData: async function () {

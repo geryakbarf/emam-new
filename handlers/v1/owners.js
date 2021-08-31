@@ -32,10 +32,12 @@ const getAllOwners = async (req, res) => {
 const addOwner = async (req, res) => {
     try {
         const owner = await Owner.create(req.body);
+        console.log(owner)
         const data = await Owner.findOne({name: owner.name});
         return res.json({
             message: "Sukses menambahkan owner",
-            data: {id: data._id}
+            data: {id: data._id,
+            name : owner.name}
         });
     } catch (error) {
         console.log(error);
@@ -107,6 +109,7 @@ const updateOwner = async (req, res) => {
 const insertPlacetoList = async (req, res) => {
     try {
         const value = req.body;
+        console.log(value)
         //Validasi Jika tempat sudah ada di wishlist
         if (value.placeID) {
             const check = await Owner.findOne({_id: value.ownerId, "placesId": value.placeID});

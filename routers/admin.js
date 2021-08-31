@@ -20,6 +20,7 @@ const formPageJS = [
     {src: "https://cdn.jsdelivr.net/npm/vue-easy-tinymce/dist/vue-easy-tinymce.min.js"},
     {src: "/assets/js/admin/form_place.js"},
     {src: "/assets/js/admin/form_owner.js"},
+    {src: "/assets/js/admin/form_approval.js"}
 ];
 const formPageCSS = [
     {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"}
@@ -288,5 +289,39 @@ router.get('/places/:placeId/menus/:menuId', async (req, res) => {
     }
 
 })
+
+router.get('/approvals', (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/admin/list_approval.js"},
+    ];
+    const loadCSS = [
+        ...formPageCSS
+    ]
+    return res.render('admin/approvals', {loadJS, loadCSS, name: req.session.admin})
+})
+
+router.get('/approvals/:id/accept', (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/admin/list_approval.js"},
+    ];
+    const loadCSS = [
+        ...formPageCSS
+    ]
+    return res.render('admin/approvals', {loadJS, loadCSS, name: req.session.admin})
+})
+
+// router.get('/approvals/:id/edit', (req, res) => {
+//     const {id} = req.params;
+//     return res.render('admin/edit-approval', {loadJS: formPageJS, loadCSS: formPageCSS, id})
+// })
+
 
 module.exports = router
