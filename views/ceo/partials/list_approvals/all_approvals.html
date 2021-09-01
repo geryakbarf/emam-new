@@ -16,14 +16,12 @@
                     <td>{{ row.name }}</td>
                     <td>{{ row.idx }}</td>
                     <td v-if="row.is_rejected == 'true'">Rejected</td>
-                    <td v-if="(row.is_rejected == '' || !row.is_rejected) && row.to_ceo">Sent To CEO</td>
                     <td v-if="row.is_rejected == 'false'">Accepted</td>
-                    <td v-if="(row.is_rejected == '' || !row.is_rejected) && !row.to_ceo">Waiting</td>
+                    <td v-if="row.is_rejected == '' || !row.is_rejected">Waiting</td>
                     <td>{{ row.updatedAt }}</td>
                     <td class="text-center">
-                        <button class="btn btn-primary my-2" v-on:click="sendToCEO(row._id)">Send To CEO</button>
-                        <button class="btn my-2" v-on:click="rejectRequest(row._id, row.contactNumber, row.contactType, row.name)">Reject</button>
-                            <a v-bind:href="'/admin/places/'+row._id+'/edit'" class="btn my-2">View Data</a>
+                        <button class="btn btn-primary my-2" v-on:click="setVisited(row._id)">Set Visited</button>
+                            <a v-bind:href="'/panel/ceo/places/'+row._id+'/edit'" class="btn my-2">View Data</a>
                     </td>
                 </tr>
             </template>

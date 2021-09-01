@@ -1,0 +1,52 @@
+<ul class="nav">
+    <li v-bind:class="[isActiveSideMenu(0) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(0)">General</a>
+        <ul class="nav">
+            <li v-bind:class="[isActiveSideMenu(1) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(1)">Facilities</a>
+            </li>
+            <li v-bind:class="[isActiveSideMenu(2) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(2)">Operational times</a>
+            </li>
+            <!-- <li v-bind:class="[isActiveSideMenu(3) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(3)">Banners</a>
+            </li> -->
+            <li v-bind:class="[isActiveSideMenu(4) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(4)">Payment Category</a>
+            </li>
+            <li v-bind:class="[isActiveSideMenu(5) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(5)">Call to Actions</a>
+            </li>
+            <li v-bind:class="[isActiveSideMenu(11) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(11)">Descriptions</a>
+            </li>
+            <% if(locals.id){ %>
+            <li v-bind:class="[isActiveSideMenu(12) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(12)">Owner</a>
+            </li>
+            <%}%>
+            <% if(locals.id){ %>
+            <li v-bind:class="[isActiveSideMenu(10) ? 'active' : '', 'nav-item']">
+                <a href="javascript:void(0)" v-on:click="setSideMenuIndex(10)">QR Generator</a>
+            </li>
+            <%}%>
+        </ul>
+    </li>
+    <% if(locals.id){ %>
+        <li v-bind:class="[isActiveSideMenu(6) ? 'active' : '', 'nav-item']">
+            <a href="javascript:void(0)" v-on:click="setSideMenuIndex(6)">Menus</a>
+        </li>
+    <%}%>
+    <li v-bind:class="[isActiveSideMenu(7) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(7)">Galleries</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(8) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(8)">Covid-19</a>
+    </li>
+    <% if(locals.id){ %>
+    <li v-bind:class="[isActiveSideMenu(9) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(9)">Options</a>
+    </li>
+    <%}%>
+
+</ul>

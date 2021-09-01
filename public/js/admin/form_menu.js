@@ -175,9 +175,11 @@ var app = new Vue({
                     let _this = this
                     setTimeout(() => {
                         window.removeEventListener('beforeunload', _this.leaving, true)
-                        if (ownerId && ownerId !== "")
+                        if (ownerId && ownerId !== "") {
                             window.location = `/panel/owner/places/${placeId}/menus/new`
-                        else
+                        } else if (ceo && ceo !== ""){
+                            window.location = `/panel/ceo/places/${placeId}/menus/new`
+                        } else
                             window.location = `/admin/places/${placeId}/menus/new`
                         this.loading = false;
                     }, 1000)
@@ -231,6 +233,8 @@ var app = new Vue({
                         window.removeEventListener('beforeunload', _this.leaving, true)
                         if (ownerId && ownerId !== "")
                             window.location = `/panel/owner/places/${placeId}/edit?nav=6`
+                        else if(ceo && ceo !== "")
+                            window.location = `/panel/ceo/places/${placeId}/edit?nav=6`
                         else
                             window.location = `/admin/places/${placeId}/edit?nav=6`
                         this.loading = false;

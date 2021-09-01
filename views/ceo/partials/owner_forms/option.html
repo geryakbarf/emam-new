@@ -1,0 +1,9 @@
+<div v-show="sideMenuIndex == 9">
+    <h1>Option</h1>
+    <button class="btn" v-on:click="onDeleteData">Delete Owner</button>
+    <br>
+    <% if(locals.ceo) { %>
+      <button class="btn btn-primary my-2" v-on:click="acceptRequest()">Accept</button>
+      <button class="btn my-2" v-on:click="rejectRequest()">Reject</button>
+    <% } %>
+</div>

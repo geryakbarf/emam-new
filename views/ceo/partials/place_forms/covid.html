@@ -1,0 +1,13 @@
+<div v-if="sideMenuIndex == 8">
+    <h1>Covid-19</h1>
+    <div class="columns">
+        <div class="column col-12" v-for="prot in formFieldValues.covid_prot">
+            <div class="form-group">
+                <label class="form-switch">
+                  <input type="checkbox" v-on:click="onCovidProtChecked(prot)" v-bind:checked="isCovidProtChecked(prot)">
+                  <i class="form-icon"></i> {{ prot.wording }}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

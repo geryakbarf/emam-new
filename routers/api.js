@@ -53,9 +53,12 @@ v1.post('/claim/send-claim', placeHandler.insertClaim)
 v1.post('/tell-us', webHandler.sendEmail)
 
 v1.get('/approvals', approvalHandler.getRequestedPlaces)
+v1.get('/approvals/ceo', approvalHandler.getCeoPlaces)
+v1.put('/approvals/ceo/setvisited', approvalHandler.setVisitedPlace)
 v1.get('/approvals/:id', approvalHandler.getOneRequestedPlace)
 v1.put('/approvals/accept', approvalHandler.acceptRequest)
 v1.put('/approvals/reject', approvalHandler.rejectRequest)
+v1.put('/approvals/sendtoceo', approvalHandler.sendToCeo)
 
 router.use('/v1', v1);
 

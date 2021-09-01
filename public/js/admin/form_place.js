@@ -190,9 +190,6 @@ var app = new Vue({
             if (ownerId && ownerId !== "") {
                 formData.is_requested = true;
                 formData.is_rejected = "";
-            } else {
-                formData.is_requested = false;
-                formData.is_rejected = "";
             }
             let photoTmp = this.formTmp.photo;
             let photo = formData.photo;
@@ -246,6 +243,8 @@ var app = new Vue({
                         window.removeEventListener('beforeunload', _this.leaving, true)
                         if (ownerId && ownerId !== "") {
                             window.location = "/panel/owner/places/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
+                        } else if (ceo && ceo !== ""){
+                            window.location = "/panel/ceo/places/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
                         } else
                             window.location = "/admin/places/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
                     }, 1000)
@@ -578,6 +577,8 @@ var app = new Vue({
             window.removeEventListener('beforeunload', this.leaving, true)
             if (ownerId && ownerId !== "")
                 window.location = `/panel/owner/places/${placeId}/menus/${menuId}`
+            else if(ceo && ceo !== "")
+                window.location = `/panel/ceo/places/${placeId}/menus/${menuId}`
             else
                 window.location = `/admin/places/${placeId}/menus/${menuId}`
         },

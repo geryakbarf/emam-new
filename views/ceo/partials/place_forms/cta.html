@@ -1,0 +1,110 @@
+<div v-if="sideMenuIndex == 5">
+    <h1>Call to Actions</h1>
+    <div class="columns">
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Telusuri Lokasi">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link Google Map</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[0].value">
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Chat Whatsapp">
+            </div>
+        </div>
+        <div class="column col-7">
+            <div class="form-group">
+                <label class="form-label">Nomor WA</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[1].value">
+            </div>
+        </div>
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label">Status</label>
+                <label class="form-switch">
+                    <input class="form-input" type="checkbox" v-model="form.call_to_actions[1].draft">
+                    <i class="form-icon"></i> Draft
+                </label>
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Instagram">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link Instagram</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[2].value">
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Website">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link website</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[3].value">
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Grabfood">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link Grabfood</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[4].value">
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Gofood">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link Gofood</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[5].value">
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="Checkin">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link Checkin</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[6].value">
+            </div>
+        </div>
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" readonly type="text" value="PDF Menu">
+            </div>
+        </div>
+        <div class="column col-9">
+            <div class="form-group">
+                <label class="form-label">Link PDF Menu</label>
+                <input class="form-input" type="text" v-model="form.call_to_actions[7].value">
+            </div>
+        </div>
+    </div>
+</div>

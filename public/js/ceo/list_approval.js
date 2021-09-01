@@ -1,7 +1,6 @@
 var app = new Vue({
     el: '#list-approval',
     data: {
-        admin : username,
         sideMenuIndex: 0,
         filter: '',
         filterupdated: '',
@@ -14,7 +13,7 @@ var app = new Vue({
             {label: 'Action'}
         ],
         approvals: [],
-        approvals_updated: []
+        approvals_visited: []
     },
     methods: {
         formatToday: function (date) {
@@ -64,10 +63,10 @@ var app = new Vue({
         isActiveSideMenu: function (id) {
             return this.sideMenuIndex == id
         },
-        sendToCEO: async function (id) {
-            const res = await fetch('/api/v1/approvals/sendtoceo', {
+        setVisited: async function (id) {
+            const res = await fetch('/api/v1/approvals/ceo/setvisited', {
                 method: "PUT",
-                body: JSON.stringify({_id: id, to_ceo : true}),
+                body: JSON.stringify({_id: id, is_visited: true}),
                 headers: {'Content-Type': "application/json"}
             });
             if (res.ok) {
@@ -100,7 +99,7 @@ var app = new Vue({
             }
         },
         loadApprovals: async function () {
-            const res = await fetch('/api/v1/approvals');
+            const res = await fetch('/api/v1/approvals/ceo');
             const data = await res.json();
             if (res.ok) {
                 this.approvals = data.data;
@@ -112,7 +111,7 @@ var app = new Vue({
                     this.approvals[i].updatedAt = this.compareDate(this.approvals[i].updatedAt, true);
                     this.approvals[i].idx = i + 1;
                 }
-                this.approvals_updated = this.approvals.filter(e => e.lastUpdate <= 2 && !e.is_requested);
+                this.approvals_visited = this.approvals.filter(e => e.is_visited);
             } else toastr.error("Failed to retrive data");
         }
     },

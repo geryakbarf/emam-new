@@ -1,0 +1,56 @@
+<div v-if="sideMenuIndex == 2">
+    <h1>Operational Times</h1>
+    <div class="columns">
+        <div class="column 7">
+            <div class="form-group">
+                <label class="form-switch">
+                    <input type="checkbox" v-model="operationalTimesStatus">
+                    <i class="form-icon"></i> Operational Times Status
+                </label>
+            </div>
+        </div>
+        <div v-if="hasOperationalTimes" style="float:right;">
+            <button class="btn" v-on:click="sameHours">Same Hours</button>
+        </div>
+    </div>
+    <div v-if="hasOperationalTimes" class="columns" v-for="(op, idx) in form.operational_times">
+        <div class="column col-3">
+            <div class="form-group">
+                <label class="form-label" v-bind:for="'day-'+idx">Hari</label>
+                <input class="form-input" readonly type="text" v-bind:id="'day-'+idx" v-model="op.day">
+            </div>
+        </div>
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label" v-bind:for="'openTime-'+idx">Jam Buka</label>
+                <input class="form-input" type="time" v-bind:id="'openTime-'+idx" v-model="op.openTime">
+            </div>
+        </div>
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label" v-bind:for="'closeTime-'+idx">Jam Tutup</label>
+                <input class="form-input" type="time" v-bind:id="'closeTime-'+idx" v-model="op.closeTime">
+            </div>
+        </div>
+        <div class="column col-4" style="padding-top: 38px;">
+            <div class="columns">
+                <div class="column col-5">
+                    <div class="form-group">
+                        <label class="form-switch">
+                            <input type="checkbox" v-model="op.is_24Hours" :disabled="!op.is_open">
+                            <i class="form-icon"></i> 24 Hours
+                        </label>
+                    </div>
+                </div>
+                <div class="column col-7">
+                    <div class="form-group">
+                        <label class="form-switch">
+                            <input type="checkbox" v-model="op.is_open">
+                            <i class="form-icon"></i> Open
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
