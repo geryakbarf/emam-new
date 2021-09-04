@@ -113,6 +113,7 @@ var app = new Vue({
                     this.approvals[i].idx = i + 1;
                 }
                 this.approvals_updated = this.approvals.filter(e => e.lastUpdate <= 2 && !e.is_requested);
+                this.approvals = this.approvals.filter(e => (!e.is_rejected || e.is_rejected === "") && (!e.to_ceo || e.to_ceo === "" ));
             } else toastr.error("Failed to retrive data");
         }
     },

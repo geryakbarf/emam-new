@@ -7,7 +7,7 @@ const serverErrMsg = "Terjadi kesalahan, mohon hubungi admin."
 
 const getRequestedPlaces = async (req, res) => {
     try {
-        let data = await Place.find({ is_requested: true });
+        let data = await Place.find({ is_requested: true }).sort({createdAt : 'descending'});
         data = data.map(e => {
             let doc = e._doc
             doc.updatedAt = moment(doc.updatedAt).format("YYYY-MM-DD HH:mm")
@@ -24,7 +24,7 @@ const getRequestedPlaces = async (req, res) => {
 
 const getCeoPlaces = async (req, res) => {
     try {
-        let data = await Place.find({ is_requested: true, to_ceo: true });
+        let data = await Place.find({ is_requested: true, to_ceo: true }).sort({createdAt : 'descending'});
         data = data.map(e => {
             let doc = e._doc
             doc.updatedAt = moment(doc.updatedAt).format("YYYY-MM-DD HH:mm")

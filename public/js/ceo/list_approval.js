@@ -111,7 +111,9 @@ var app = new Vue({
                     this.approvals[i].updatedAt = this.compareDate(this.approvals[i].updatedAt, true);
                     this.approvals[i].idx = i + 1;
                 }
+                this.approvals = this.approvals.filter(e => (!e.is_rejected || e.is_rejected === ""));
                 this.approvals_visited = this.approvals.filter(e => e.is_visited);
+                this.approvals = this.approvals.filter(e => !e.is_visited);
             } else toastr.error("Failed to retrive data");
         }
     },
