@@ -71,6 +71,8 @@ var app = new Vue({
                         window.removeEventListener('beforeunload', _this.leaving, true)
                         if (ceo && ceo !== ""){
                             window.location = "/panel/ceo/owners/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
+                        } else if(owner && owner !== ""){
+                            window.location = "/panel/owner/owners/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
                         } else
                             window.location = "/admin/owners/" + this.form._id + "/edit?nav=" + this.sideMenuIndex
                     }, 1000)
@@ -113,6 +115,16 @@ var app = new Vue({
             }
         },
         updateOwner: async function (formData) {
+          if(owner && owner !== ""){
+            if(this.form.password !== this.repassword){
+                toastr.error("Password dan konfirmasi password harus sama!")
+                return;
+            }
+            if(this.form.password === ""){
+              toastr.error("Password tidak boleh kosong!")
+              return;
+            }
+          }
             try {
                 const res = await fetch('/api/v1/owners', {
                     method: "PUT",
