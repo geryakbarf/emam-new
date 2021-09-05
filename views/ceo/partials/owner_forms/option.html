@@ -3,7 +3,7 @@
     <button class="btn" v-on:click="onDeleteData">Delete Owner</button>
     <br>
     <% if(locals.ceo) { %>
-      <button class="btn btn-primary my-2" v-on:click="acceptRequest()">Accept</button>
-      <button class="btn my-2" v-on:click="rejectRequest()">Reject</button>
+        <a class="btn btn-primary my-2" v-bind:href="'/panel/ceo/message/'+_id+'/accept'">Accept</a>
+        <a class="btn btn-primary my-2" v-bind:href="'/panel/ceo/message/'+_id+'/reject'">Reject</a>
     <% } %>
 </div>

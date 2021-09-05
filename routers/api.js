@@ -14,6 +14,7 @@ const menuHandler = require('../handlers/v1/menus');
 const imageHandler = require('../handlers/v1/images');
 const webHandler = require('../handlers/v1/web');
 const approvalHandler = require('../handlers/v1/approvals');
+const messageHandler = require('../handlers/v1/message');
 
 v1.get('/place-categories', placeCatHandler.getAll)
 v1.get('/cuisines', cuisineHandler.getAll)
@@ -21,6 +22,10 @@ v1.get('/payments', paymentHandler.getAll)
 v1.get('/paymentscat', paymentHandler.getPaymentCategory)
 v1.get('/facilities', facilityHandler.getAll)
 v1.get('/covid-protocols', covidHandler.getAll)
+
+v1.get('/message/ceo', messageHandler.getCeoMessage)
+v1.post('/message', messageHandler.sendMessage)
+v1.get('/message/:id', messageHandler.getOneMessage)
 
 v1.get('/owners', ownerHanlder.getAllOwners)
 v1.post('/owners', ownerHanlder.addOwner)

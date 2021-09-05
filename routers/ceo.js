@@ -28,7 +28,7 @@ const formPageCSS = [
 const router = express.Router()
 
 router.use((req, res, next) => {
-    res.locals.title = "Owner | Emam Indonesia"
+    res.locals.title = "CEO | Emam Indonesia"
     next();
 });
 
@@ -130,6 +130,75 @@ router.get('/owners/:id/edit', async (req, res) => {
     const {id} = req.params;
     const place = req.session.placeId;
     return res.render('ceo/edit-owner', {loadJS: loadJS, loadCSS: formPageCSS, id, ceo, place})
+})
+
+router.get('/message', (req, res) => {
+  let ceo = req.session.ceoname;
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/list_message.js"},
+    ];
+    const loadCSS = [
+        ...formPageCSS
+    ]
+    return res.render('ceo/message', {loadJS, loadCSS, ceo})
+})
+
+router.get('/message/:id/reject', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/form_message.js"},
+    ];
+    let ceo = req.session.ceoname;
+    const {id} = req.params;
+    const place = req.session.placeId;
+    const subject = "Rejection";
+    return res.render('ceo/send-message', {loadJS: loadJS, loadCSS: formPageCSS, id, ceo, place, subject})
+})
+
+router.get('/message/:id/accept', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/form_message.js"},
+    ];
+    let ceo = req.session.ceoname;
+    const {id} = req.params;
+    const place = req.session.placeId;
+    const subject = "Accepted";
+    return res.render('ceo/send-message', {loadJS: loadJS, loadCSS: formPageCSS, id, ceo, place, subject})
+})
+
+router.get('/message/:id/view', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/form_message.js"},
+    ];
+    const {id} = req.params;
+    return res.render('ceo/view-message', {loadJS: loadJS, loadCSS: formPageCSS, id})
+})
+
+router.get('/message/new', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/form_message.js"},
+    ];
+    let ceo = req.session.ceoname;
+    return res.render('ceo/send-message', {loadJS: loadJS, loadCSS: formPageCSS, ceo})
 })
 
 router.get('/logout', (req, res) => {
