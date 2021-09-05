@@ -207,4 +207,101 @@ router.get('/logout', (req, res) => {
     return res.redirect('ceo/login')
 })
 
+router.get('/owners', (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/list_owner.js"},
+    ];
+    let ceo = req.session.ceoname;
+    const loadCSS = [
+        ...formPageCSS
+    ]
+    return res.render('ceo/owner', {loadJS, loadCSS, name: req.session.admin})
+})
+
+router.get('/owners/:id/view', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/ceo/form_owner.js"},
+    ];
+    let ceo = req.session.ceoname;
+    const {id} = req.params;
+    return res.render('ceo/view-owner', {loadJS: loadJS, loadCSS: formPageCSS, id})
+})
+
+// ---------
+
+router.get('/income', async (req, res) => {
+    let owner = await Owner.find();
+    let totalSubs = 0;
+    let totalGold = 0;
+    let totalSilver = 0;
+    let incomeGold = 0;
+    let incomeSilver = 0;
+    let incomeSub = 0;
+    let totalAddon = 0;
+    let totalEmam = 0;
+    let totalIG = 0;
+    let totalDouble = 0;
+    let incomeEmam = 0;
+    let incomeIG = 0;
+    let incomeDouble = 0;
+    let incomeAddon = 0;
+    let totalIncome = 0;
+    for (var i = 0; i < owner.length; i++) {
+        if (owner[i].subscription || owner[i].subscription !== "") {
+            totalSubs = totalSubs + 1;
+            if (owner[i].subscription === "Gold") {
+                incomeGold = incomeGold + 25000;
+                totalGold = totalGold + 1;
+            } else {
+                incomeSilver = incomeSilver + 20000;
+                totalSilver = totalSilver + 1;
+            }
+        }
+        //
+        if (owner[i].addons || owner[i].addons !== "") {
+            totalAddon = totalAddon + 1;
+            if (owner[i].addons === "Emam") {
+                incomeEmam = incomeEmam + 5000;
+                totalEmam = totalEmam + 1;
+            } else if (owner[i].addons === "Instagram") {
+                incomeIG = incomeIG + 10000;
+                totalIG = totalIG + 1;
+            } else {
+                incomeDouble = incomeDouble + 15000;
+                totalDouble = totalDouble + 1;
+            }
+        }
+    }
+    incomeSub = incomeGold + incomeSilver;
+    incomeAddon = incomeIG + incomeDouble + incomeEmam;
+    totalIncome = incomeSub + incomeAddon;
+    income = {
+        totalSubs: totalSubs,
+        totalAddon: totalAddon,
+        totalGold: totalGold,
+        totalSilver: totalSilver,
+        totalEmam: totalEmam,
+        totalIG: totalIG,
+        totalDouble: totalDouble,
+        incomeSub: incomeSub,
+        incomeGold: incomeGold,
+        incomeSilver: incomeSilver,
+        incomeAddon: incomeAddon,
+        incomeEmam: incomeEmam,
+        incomeIG: incomeIG,
+        incomeDouble: incomeDouble,
+        totalIncome: totalIncome
+    }
+    console.log(income);
+    return res.render('ceo/income', {income})
+})
+
 module.exports = router

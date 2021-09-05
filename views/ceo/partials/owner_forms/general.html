@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label class="form-label" for="name">Nama Pemilik*</label>
                 <input class="form-input" id="name" placeholder="Ex: Gery Akbar Fauzi" required type="text"
-                       v-model="form.name">
+                       v-model="form.name" readonly>
             </div>
         </div>
         <div class="column col-6">
@@ -32,14 +32,14 @@
             <div class="form-group">
                 <label class="form-label" for="contactNumber">Nomor Kontak*</label>
                 <input class="form-input" id="contactNumber" placeholder="Ex: 85156" required type="number"
-                       v-model="form.contactNumber">
+                       v-model="form.contactNumber" readonly>
             </div>
         </div>
         <div class="column col-6">
             <div class="form-group">
                 <label class="form-label" for="addons">Addons</label>
                 <select class="form-select" id="addons" required v-model="form.addons">
-                    <option value="">Pilih Salah Satu Addons</option>
+                    <option value="">-</option>
                     <option value="Emam">Emam</option>
                     <option value="Instagram">Instagram</option>
                     <option value="Double">Double</option>
@@ -51,28 +51,28 @@
             <div class="form-group">
                 <label class="form-label" for="subsdate">Subscriptions Date</label>
                 <input class="form-input" id="subsdate" readonly type="text"
-                       v-model="form.subsDate">
+                       v-model="form.subsDate" readonly>
             </div>
         </div>
         <div class="column col-6">
             <div class="form-group">
                 <label class="form-label" for="subsenddate">Subscriptions End Date</label>
                 <input class="form-input" id="subsenddate" readonly type="text"
-                       v-model="form.subsEndDate">
+                       v-model="form.subsEndDate" readonly>
             </div>
         </div>
         <div class="column col-6">
             <div class="form-group">
                 <label class="form-label" for="addonsdate">Addons Date</label>
                 <input class="form-input" id="addonsdate" readonly type="text"
-                       v-model="form.addonsDate">
+                       v-model="form.addonsDate" readonly>
             </div>
         </div>
         <div class="column col-6">
             <div class="form-group">
                 <label class="form-label" for="addonsenddate">Addons End Date</label>
                 <input class="form-input" id="addonsenddate" readonly type="text"
-                       v-model="form.addonsEndDate">
+                       v-model="form.addonsEndDate" readonly>
             </div>
         </div>
         <!-- <div class="column col-12">

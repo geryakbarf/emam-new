@@ -1,7 +1,5 @@
-<div v-if="sideMenuIndex == 6">
+<div v-if="sideMenuIndex == 1">
     <h1>List Restaurant</h1>
-    <a class="btn btn-primary" v-bind:href="'/admin/owners/'+form._id+'/places/new'">Add Restaurant</a>
-
     <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
         <datatable :columns="placeCols" :data="placeForm" :filter="filter" class="table">
             <template scope="{ row, column, index }">
@@ -9,12 +7,6 @@
                     <td class="text-center">{{ index + 1 }}</td>
                     <td>{{ row.name }}</td>
                     <td> {{row.views}}</td>
-                    <td class="text-center">
-                        <a class="btn my-2" v-bind:href="'/admin/places/'+row._id+'/edit'">Update</a>
-                        <button class="btn btn-primary" v-on:click="deletePlaces(row._id)">
-                            Hapus
-                        </button>
-                    </td>
                 </tr>
             </template>
         </datatable>
