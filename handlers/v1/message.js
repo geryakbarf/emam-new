@@ -94,6 +94,43 @@ const getAdminMessage = async (req, res) => {
     }
 }
 
+const getOwnerMessage = async (req, res) => {
+    try {
+      //Inbox Area
+        let inbox = await Message.find({ receiver: req.session.owner }).sort({createdAt : 'descending'});
+        if(inbox.length > 0 || inbox !== 'undefined'){
+          inbox = inbox.map(e => {
+              let doc = e._doc
+              doc.createdAt = moment(doc.createdAt).format("DD-MM-YYYY")
+              return doc;
+          })
+          for (let i = 0; i < inbox.length; i++) {
+                inbox[i].receiverName = "Admin";
+          }
+        }
+        console.log(inbox);
+        //Outbox Area
+        let outbox = await Message.find({ sender: req.session.owner }).sort({createdAt : 'descending'});
+        if(outbox.length > 0 || outbox !== 'undefined'){
+          outbox = outbox.map(e => {
+              let doc = e._doc
+              doc.createdAt = moment(doc.createdAt).format("DD-MM-YYYY")
+              return doc;
+          })
+          for (let i = 0; i < outbox.length; i++) {
+                outbox[i].receiverName = "Admin";
+          }
+        }
+        console.log(outbox)
+        return res.json({message: "Success to retrive message!", inbox, outbox})
+    } catch (error) {
+        console.log(error);
+        if (error.code)
+            return res.status(error.code).json(error.message);
+        return res.status(500).json({message: error.message});
+    }
+}
+
 const sendMessage = async(req,res) => {
     try {
         const message = await Message.create(req.body);
@@ -137,6 +174,7 @@ const getOneMessage = async(req, res) => {
 module.exports = {
     getCeoMessage,
     getAdminMessage,
+    getOwnerMessage,
     sendMessage,
     getOneMessage
 }

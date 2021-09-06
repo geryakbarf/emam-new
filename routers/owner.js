@@ -172,4 +172,42 @@ router.get('/logout', (req, res) => {
     return res.redirect('owner/login')
 })
 
+router.get('/message', (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/list_message.js"},
+    ];
+    const loadCSS = [
+        ...formPageCSS
+    ]
+    return res.render('owner/message', {loadJS, loadCSS})
+})
+
+router.get('/message/:id/view', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/form_message.js"},
+    ];
+    const {id} = req.params;
+    return res.render('owner/view-message', {loadJS: loadJS, loadCSS: formPageCSS, id})
+})
+
+router.get('/message/new', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/form_message.js"},
+    ];
+    let owner = req.session.owner;
+    return res.render('owner/send-message', {loadJS: loadJS, loadCSS: formPageCSS, owner})
+})
+
 module.exports = router
