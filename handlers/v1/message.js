@@ -49,6 +49,51 @@ const getCeoMessage = async (req, res) => {
     }
 }
 
+const getAdminMessage = async (req, res) => {
+    try {
+      //Inbox Area
+        let inbox = await Message.find({ receiver: "Admin" }).sort({createdAt : 'descending'});
+        if(inbox.length > 0 || inbox !== 'undefined'){
+          inbox = inbox.map(e => {
+              let doc = e._doc
+              doc.createdAt = moment(doc.createdAt).format("DD-MM-YYYY")
+              return doc;
+          })
+          for (let i = 0; i < inbox.length; i++) {
+              if(inbox[i].sender !== "CEO"){
+                  let sender = await Owner.find({_id : inbox[i].sender});
+                  inbox[i].receiverName = sender[0].name;
+              }else
+                  inbox[i].receiverName = "CEO";
+          }
+        }
+        console.log(inbox);
+        //Outbox Area
+        let outbox = await Message.find({ sender: "Admin" }).sort({createdAt : 'descending'});
+        if(outbox.length > 0 || outbox !== 'undefined'){
+          outbox = outbox.map(e => {
+              let doc = e._doc
+              doc.createdAt = moment(doc.createdAt).format("DD-MM-YYYY")
+              return doc;
+          })
+          for (let i = 0; i < outbox.length; i++) {
+              if(outbox[i].receiver !== "CEO"){
+                  let sender = await Owner.find({_id : outbox[i].receiver});
+                  outbox[i].receiverName = sender[0].name;
+              }else
+                  outbox[i].receiverName = "CEO";
+          }
+        }
+        console.log(outbox)
+        return res.json({message: "Success to retrive message!", inbox, outbox})
+    } catch (error) {
+        console.log(error);
+        if (error.code)
+            return res.status(error.code).json(error.message);
+        return res.status(500).json({message: error.message});
+    }
+}
+
 const sendMessage = async(req,res) => {
     try {
         const message = await Message.create(req.body);
@@ -91,6 +136,7 @@ const getOneMessage = async(req, res) => {
 
 module.exports = {
     getCeoMessage,
+    getAdminMessage,
     sendMessage,
     getOneMessage
 }

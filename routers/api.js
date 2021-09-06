@@ -24,6 +24,7 @@ v1.get('/facilities', facilityHandler.getAll)
 v1.get('/covid-protocols', covidHandler.getAll)
 
 v1.get('/message/ceo', messageHandler.getCeoMessage)
+v1.get('/message/admin', messageHandler.getAdminMessage)
 v1.post('/message', messageHandler.sendMessage)
 v1.get('/message/:id', messageHandler.getOneMessage)
 
