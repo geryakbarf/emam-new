@@ -336,8 +336,8 @@ router.get('/message', (req, res) => {
       ]
       return res.render('admin/message', {loadJS, loadCSS})
   })
-  
-  router.get('/message/:id/reject', async (req, res) => {
+
+  router.get('/message/:id/:place/reject', async (req, res) => {
       const loadJS = [
           {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
           {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
@@ -345,26 +345,13 @@ router.get('/message', (req, res) => {
           {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
           {src: "/assets/js/admin/form_message.js"},
       ];
+      const admin = "Admin";
       const {id} = req.params;
-      const place = req.session.placeId;
+      const {place} = req.params;
       const subject = "Rejection";
-      return res.render('admin/send-message', {loadJS: loadJS, loadCSS: formPageCSS, id, place, subject})
+      return res.render('admin/send-message', {loadJS: loadJS, loadCSS: formPageCSS, id, place, subject, admin})
   })
-  
-  router.get('/message/:id/accept', async (req, res) => {
-      const loadJS = [
-          {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
-          {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
-          {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
-          {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
-          {src: "/assets/js/admin/form_message.js"},
-      ];
-      const {id} = req.params;
-      const place = req.session.placeId;
-      const subject = "Accepted";
-      return res.render('admin/send-message', {loadJS: loadJS, loadCSS: formPageCSS, id, place, subject})
-  })
-  
+
   router.get('/message/:id/view', async (req, res) => {
       const loadJS = [
           {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
@@ -376,7 +363,7 @@ router.get('/message', (req, res) => {
       const {id} = req.params;
       return res.render('admin/view-message', {loadJS: loadJS, loadCSS: formPageCSS, id})
   })
-  
+
   router.get('/message/new', async (req, res) => {
       const loadJS = [
           {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},

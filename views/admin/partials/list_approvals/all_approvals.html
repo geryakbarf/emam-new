@@ -22,7 +22,7 @@
                     <td>{{ row.updatedAt }}</td>
                     <td class="text-center">
                         <button class="btn btn-primary my-2" v-on:click="sendToCEO(row._id)">Send To CEO</button>
-                        <button class="btn my-2" v-on:click="rejectRequest(row._id, row.contactNumber, row.contactType, row.name)">Reject</button>
+                            <a class="btn btn-primary my-2" v-bind:href="'/admin/message/'+row.owners+'/'+row._id+'/reject'">Reject</a>
                             <a v-bind:href="'/admin/places/'+row._id+'/edit'" class="btn my-2">View Data</a>
                     </td>
                 </tr>

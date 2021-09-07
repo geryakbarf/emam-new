@@ -13,6 +13,15 @@ const getRequestedPlaces = async (req, res) => {
             doc.updatedAt = moment(doc.updatedAt).format("YYYY-MM-DD HH:mm")
             return doc;
         })
+        for(let i =0; i < data.length; i++){
+          let owner = await Owner.find({placesId: data[i]._id}).limit(1)
+          console.log(owner);
+          if(owner.length > 0 )
+            data[i].owners = owner[0]._id;
+          else
+            data[i].owners = "null";
+        }
+        console.log(data)
         return res.json({message: "Success to retrive requested places", data})
     } catch (error) {
         console.log(error);
@@ -103,6 +112,7 @@ const sendToCeo = async (req,res) => {
 const rejectRequest = async (req, res) => {
     try {
         const {_id, ...data} = req.body;
+        console.log(req.body);
         const place = await Place.updateOne({_id}, data);
         return res.json({
             message: "Success to update place",

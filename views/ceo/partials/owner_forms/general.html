@@ -75,6 +75,10 @@
                        v-model="form.addonsEndDate" readonly>
             </div>
         </div>
+        <% if(locals.place) { %>
+          <a class="btn btn-primary my-2" v-bind:href="'/panel/ceo/message/'+_id+'/accept'" style="margin-right: 10px; margin-left: 10px; margin-top: 10px;">Accept</a>
+          <a class="btn btn-primary my-2" v-bind:href="'/panel/ceo/message/'+_id+'/reject'" style="margin-top: 10px;">Reject</a>
+        <% } %>
         <!-- <div class="column col-12">
             <div class="form-group">
                 <label class="form-label" for="description">Description*</label>
