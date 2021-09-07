@@ -138,7 +138,7 @@ router.get('/owners/edit', async (req, res) => {
         {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
         {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
         {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
-        {src: "/assets/js/admin/form_owner.js"},
+        {src: "/assets/js/owner/form_owner.js"},
     ];
     const id = req.session.owner;
     const ownerId = req.session.owner;
