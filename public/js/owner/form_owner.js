@@ -20,6 +20,7 @@ var app = new Vue({
             placesId: []
         },
         repassword: "",
+        recommendation : "",
         placeForm: {
             _id: null,
             name: '',
@@ -153,8 +154,11 @@ var app = new Vue({
                 });
                 const data = await res.json();
                 this.placeForm = data.data;
-                if (this.placeForm.views === null || this.placeForm.views === "")
-                    this.placeForm.views = 0;
+                for(var i =0; i < this.placeForm.length; i++ ){
+                  if (this.placeForm[i].views === null || this.placeForm[i].views === "" || !this.placeForm[i].views)
+                      this.placeForm[i].views = 0;
+                }
+                this.calculateRecommendation();
             } catch (error) {
                 console.log(error);
             }
@@ -235,6 +239,56 @@ var app = new Vue({
                 // this.sendWhatsapp(contactNumber, contactType, "Hallo%20kak%2C%20kami%20dari%20emam.id%20bahwa%20restoran%20anda%20yang%20bernama%20"+placeName+"%20telah%20kami%20terima%20dari%permintaan%20kakak%2E%20Terima%20kasih%20telah%20menjadi%20partner%20kami%21")
             } else toastr.error("Failed to accept the ownership");
 
+        },
+        calculateRecommendation : function (){
+          console.log("Mulai");
+          let parameter1 = 0;
+          let parameter2 = 0;
+          let parameter3 = 0;
+            for(var i = 0; i < this.placeForm.length; i++){
+                //Pengecekan bobot pertama
+                if(this.placeForm[i].categories.length > 1){
+                  for(var j = 0; j < this.placeForm[i].categories.length; j++){
+                      if(this.placeForm[i].categories[j].name == "Kaki lima"){
+                        parameter1 += 1;
+                        break;
+                      } else if(this.placeForm[i].categories[j].name == "Restoran"){
+                        parameter1 += 3;
+                        break;
+                      }else if(this.placeForm[i].categories[j].name == "UMKM"){
+                        parameter1 += 2;
+                        break;
+                      }
+                  }//endsecondfor
+                } else{
+                  if(this.placeForm[i].categories[i].name == "Kaki lima"){
+                    parameter1 += 1;
+                  } else if(this.placeForm[i].categories[i].name == "Restoran"){
+                    parameter1 += 3;
+                  }else if(this.placeForm[i].categories[i].name == "UMKM"){
+                    parameter1 += 2;
+                  }
+                }//endif pengecekan bobot pertama
+                //Pengecekan bobot kedua
+                if(this.placeForm[i].views < 500)
+                  parameter2 += 1;
+                else
+                  parameter2 += 2;
+                  //Pengecekan bobot ketiga
+                if(this.placeForm.length > 2)
+                    parameter3 += 2;
+                else
+                    parameter3 += 1;
+            }//endfor
+            //Perhitungan semua bobot
+            console.log(parameter1 + " - " + parameter2 + " - " + parameter3);
+            var total = parameter1 + parameter2 + parameter3;
+            total = total / this.placeForm.length;
+            console.log(total);
+            if(total <= 5.5)
+              this.recommendation = "Rekomendasi tempat makan melalui web atau sosial media (Harap message ceo untuk informasi lebih lanjut)";
+            else
+              this.recommendation = "Mengadakan promosi diskon pada tempat makan anda (Harap message ceo untuk informasi lebih lanjut)";
         }
     },
     mounted() {
