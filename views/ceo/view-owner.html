@@ -1,0 +1,20 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container">
+    <h1>View Owner</h1>
+    <div class="columns" id="form-owner">
+        <div class="column col-2" style="border-right: 1px solid #eee;">
+            <%- include('./partials/owner_form_nav.html') %>
+        </div>
+        <div class="column col-10">
+            <%- include('./partials/owner_forms/general.html') %>
+            <%- include('./partials/owner_forms/places.html') %>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</div>
+<script>
+    var _id = '<%= id %>';
+</script>
+<%- include('./partials/footer.html') %>

@@ -1,0 +1,19 @@
+<div v-if="sideMenuIndex == 6">
+    <h1>List Restaurant</h1>
+    <a class="btn btn-primary" v-bind:href="'/panel/owner/places/new'">Add Restaurant</a>
+
+    <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+        <datatable :columns="placeCols" :data="placeForm" :filter="filter" class="table">
+            <template scope="{ row, column, index }">
+                <tr>
+                    <td class="text-center">{{ index + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td> {{row.views}}</td>
+                </tr>
+            </template>
+        </datatable>
+    </div>
+    <br>
+    <h6> Rekomendasi promosi untuk tempat makan anda adalah : </h6>
+    <p> {{ recommendation}}</p>
+</div>

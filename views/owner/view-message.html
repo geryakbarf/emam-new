@@ -1,0 +1,56 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container">
+    <h1>View Message</h1>
+    <div class="columns" id="form-message">
+      <div class="column col-10">
+        <% if(locals.id){ %>
+          <div class="form-group">
+            <label class="form-label" for="receiver">Receiver</label>
+            <input class="form-input" type="text" id="receiver" v-model="receiverName" required
+                   placeholder="Request Rejection" readonly>
+          </div>
+          <% } else { %>
+            <div class="form-group">
+                <label class="form-label" for="receiver">Receiver</label>
+                <select class="form-select" id="receiver" v-model="form.receiver" required>
+                    <option value="" selected disabled>Select Receiver</option>
+                    <option value="Admin">Admin</option>
+                    <option v-for="type in owners" v-bind:value="type._id">{{ type.name }}</option>
+                </select>
+            </div>
+            <% } %>
+      </div>
+      <div class="column col-10">
+          <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input class="form-input" type="text" id="subject" v-model="form.subject" required
+                     placeholder="Request Rejection" readonly>
+          </div>
+      </div>
+        <div class="column col-10">
+          <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea v-model="form.message" id="message" class="form-input"
+                        placeholder="Enter Your Message Here" rows="5" readonly></textarea>
+          </div>
+            <div style="clear: both;"></div>
+            <div style="float:right; margin-top: 10px;">
+                <button class="btn" v-on:click="onCancel()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% if(locals.id){%>
+<script>
+    var _id = <%- JSON.stringify(id) %>;
+    var ceo = "";
+    var placeId = "";
+    var admin = "";
+    var subject = "";
+    var owner = "";
+    var id ="";
+</script>
+<%}%>
+<%- include('./partials/footer.html') %>

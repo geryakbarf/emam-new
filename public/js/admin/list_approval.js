@@ -9,8 +9,7 @@ var app = new Vue({
             {label: '#'},
             {label: 'Place Name', field: "name"},
             {label: 'Index', field: "idx"},
-            {label: 'Verified', field: "is_partner"},
-            {label: 'Sticker', field: "is_sticker"},
+            {label: 'Status', field: "is_rejected"},
             {label: 'Last Update', field: "updatedAt"},
             {label: 'Action'}
         ],
@@ -65,43 +64,30 @@ var app = new Vue({
         isActiveSideMenu: function (id) {
             return this.sideMenuIndex == id
         },
-
-        updateTime: async function (id, name) {
-            const res = await fetch('/api/v1/places', {
+        sendToCEO: async function (id) {
+            const res = await fetch('/api/v1/approvals/sendtoceo', {
                 method: "PUT",
-                body: JSON.stringify({_id: id, name}),
-                headers: {'Content-Type': "application/json"}
-            });
-            if (res.ok) {
-                toastr.success("Success to update time")
-                this.loadApprovals();
-            } else toastr.error("Failed to delete data");
-
-        },
-        acceptRequest: async function (id, contactNumber, contactType, placeName) {
-            const res = await fetch('/api/v1/approvals/accept', {
-                method: "PUT",
-                body: JSON.stringify({_id: id, is_requested: false, is_partner: true}),
+                body: JSON.stringify({_id: id, to_ceo : true}),
                 headers: {'Content-Type': "application/json"}
             });
             if (res.ok) {
                 toastr.success("Success to accept the ownership")
                 this.loadApprovals();
-                this.sendWhatsapp(contactNumber, contactType, "Hallo%20kak%2C%20kami%20dari%20emam.id%20bahwa%20restoran%20anda%20yang%20bernama%20"+placeName+"%20telah%20kami%20terima%20dari%permintaan%20kakak%2E%20Terima%20kasih%20telah%20menjadi%20partner%20kami%21")
+                // this.sendWhatsapp(contactNumber, contactType, "Hallo%20kak%2C%20kami%20dari%20emam.id%20bahwa%20restoran%20anda%20yang%20bernama%20"+placeName+"%20telah%20kami%20terima%20dari%permintaan%20kakak%2E%20Terima%20kasih%20telah%20menjadi%20partner%20kami%21")
             } else toastr.error("Failed to accept the ownership");
 
         },
         rejectRequest: async function (id, contactNumber, contactType, placeName) {
             const res = await fetch('/api/v1/approvals/reject', {
                 method: "PUT",
-                body: JSON.stringify({_id: id, is_requested : false}),
+                body: JSON.stringify({_id: id, is_rejected : "true"}),
                 headers: {'Content-Type': "application/json"}
             });
             if (res.ok) {
-                toastr.success("Success to accept the ownership")
+                toastr.success("Success to reject the ownership")
                 this.loadApprovals();
                 this.sendWhatsapp(contactNumber, contactType, "Hallo%20kak%2C%20kami%20dari%20emam.id%20bahwa%20restoran%20anda%20yang%20bernama%20"+placeName+"%2E%20Mohon%20maaf%2C%20bahwa%20kami%20belum%20dapat%20menyetujui%20permintaan%20kakak%2E%20Kemungkinan%2C%20kami%20memerlukan%20data%20yang%20valid%20dan%20jelas%2E%20Jika%20sudah%20disiapkan%2C%20Kakak%20dapat%20mengulangi%20proses%20klaim%20tempat%20restoran%2E")
-            } else toastr.error("Failed to accept the ownership");
+            } else toastr.error("Failed to reject the ownership");
 
         },
         sendWhatsapp: function (number, type, content) {
@@ -127,6 +113,7 @@ var app = new Vue({
                     this.approvals[i].idx = i + 1;
                 }
                 this.approvals_updated = this.approvals.filter(e => e.lastUpdate <= 2 && !e.is_requested);
+                this.approvals = this.approvals.filter(e => (!e.is_rejected || e.is_rejected === "") && (!e.to_ceo || e.to_ceo === "" ));
             } else toastr.error("Failed to retrive data");
         }
     },

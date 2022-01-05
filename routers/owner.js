@@ -132,10 +132,82 @@ router.get('/places/:placeId/menus/:menuId', async (req, res) => {
 
 })
 
+router.get('/owners/edit', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/form_owner.js"},
+    ];
+    const id = req.session.owner;
+    const ownerId = req.session.owner;
+    return res.render('owner/edit-owner', {loadJS: loadJS, loadCSS: formPageCSS, id, ownerId})
+})
+
+router.get('/owners/:id/places/new', async (req, res) => {
+    const loadCSS = [
+        {src: "https://unpkg.com/vue-select@latest/dist/vue-select.css"},
+        {src: "/assets/styles/add-to-foodlist.css"}
+    ];
+
+    const loadJS = [
+        ...frontend.vueDeps,
+        {src: "https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"},
+        {src: "https://unpkg.com/vue-select@latest"},
+        {src: "https://unpkg.com/sweetalert/dist/sweetalert.min.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/admin/add_to_list.js"},
+    ];
+    const {id} = req.params;
+    const ownerId = req.session.owner;
+    return res.render('admin/add-to-foodlist', {loadJS: loadJS, loadCSS: loadCSS, id, ownerId})
+})
+
 router.get('/logout', (req, res) => {
     delete req.session.isOwner
     delete req.session.owner
     return res.redirect('owner/login')
+})
+
+router.get('/message', (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/list_message.js"},
+    ];
+    const loadCSS = [
+        ...formPageCSS
+    ]
+    return res.render('owner/message', {loadJS, loadCSS})
+})
+
+router.get('/message/:id/view', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/form_message.js"},
+    ];
+    const {id} = req.params;
+    return res.render('owner/view-message', {loadJS: loadJS, loadCSS: formPageCSS, id})
+})
+
+router.get('/message/new', async (req, res) => {
+    const loadJS = [
+        {src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"},
+        {src: "https://cdn.jsdelivr.net/npm/vuejs-datatable@2.0.0-alpha.7/dist/vuejs-datatable.js"},
+        {src: "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"},
+        {src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"},
+        {src: "/assets/js/owner/form_message.js"},
+    ];
+    let owner = req.session.owner;
+    return res.render('owner/send-message', {loadJS: loadJS, loadCSS: formPageCSS, owner})
 })
 
 module.exports = router

@@ -1,0 +1,89 @@
+<div v-show="sideMenuIndex == 0">
+    <h1>General</h1>
+    <div class="columns">
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="name">Nama Pemilik*</label>
+                <input class="form-input" id="name" placeholder="Ex: Gery Akbar Fauzi" required type="text"
+                       v-model="form.name" readonly>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="subscription">Tipe Subscription</label>
+                <select class="form-select" id="subscription" required v-model="form.subscription">
+                    <option selected value="">Pilih Salah Satu Subscriptions</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Silver">Silver</option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="contactType">Tipe Nomor*</label>
+                <select class="form-select" id="contactType" required v-model="form.contactType">
+                    <option value="" selected disabled>Pilih tipe nomor</option>
+                    <option value="022">022</option>
+                    <option value="+62">+62</option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="contactNumber">Nomor Kontak*</label>
+                <input class="form-input" id="contactNumber" placeholder="Ex: 85156" required type="number"
+                       v-model="form.contactNumber" readonly>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="addons">Addons</label>
+                <select class="form-select" id="addons" required v-model="form.addons">
+                    <option value="">-</option>
+                    <option value="Emam">Emam</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Double">Double</option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-6"></div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="subsdate">Subscriptions Date</label>
+                <input class="form-input" id="subsdate" readonly type="text"
+                       v-model="form.subsDate" readonly>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="subsenddate">Subscriptions End Date</label>
+                <input class="form-input" id="subsenddate" readonly type="text"
+                       v-model="form.subsEndDate" readonly>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="addonsdate">Addons Date</label>
+                <input class="form-input" id="addonsdate" readonly type="text"
+                       v-model="form.addonsDate" readonly>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="addonsenddate">Addons End Date</label>
+                <input class="form-input" id="addonsenddate" readonly type="text"
+                       v-model="form.addonsEndDate" readonly>
+            </div>
+        </div>
+        <% if(locals.place) { %>
+          <a class="btn btn-primary my-2" v-bind:href="'/panel/ceo/message/'+_id+'/accept'" style="margin-right: 10px; margin-left: 10px; margin-top: 10px;">Accept</a>
+          <a class="btn btn-primary my-2" v-bind:href="'/panel/ceo/message/'+_id+'/reject'" style="margin-top: 10px;">Reject</a>
+        <% } %>
+        <!-- <div class="column col-12">
+            <div class="form-group">
+                <label class="form-label" for="description">Description*</label>
+                <textarea v-model="form.description" id="description" class="form-input" placeholder="Tell about your place" rows="5"></textarea>
+            </div>
+        </div> -->
+    </div>
+</div>

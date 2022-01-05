@@ -15,15 +15,15 @@
                     <td class="text-center">{{ index + 1 }}</td>
                     <td>{{ row.name }}</td>
                     <td>{{ row.idx }}</td>
-                    <td v-if="row.is_partner">Yes</td>
-                    <td v-if="!row.is_partner">No</td>
-                    <td v-if="row.is_sticker">Yes</td>
-                    <td v-if="!row.is_sticker">No</td>
+                    <td v-if="row.is_rejected == 'true'">Rejected</td>
+                    <td v-if="(row.is_rejected == '' || !row.is_rejected) && row.to_ceo">Sent To CEO</td>
+                    <td v-if="row.is_rejected == 'false'">Accepted</td>
+                    <td v-if="(row.is_rejected == '' || !row.is_rejected) && !row.to_ceo">Waiting</td>
                     <td>{{ row.updatedAt }}</td>
                     <td class="text-center">
-                        <button class="btn btn-primary my-2" v-on:click="acceptRequest(row._id, row.contactNumber, row.contactType, row.name)">Accept</button>
-                        <button class="btn my-2" v-on:click="rejectRequest(row._id, row.contactNumber, row.contactType, row.name)">Reject</button>
-                        <!-- <a v-bind:href="'/admin/approvals/'+row._id+'/edit'" class="btn btn-primary my-2">Update</a> -->
+                        <button class="btn btn-primary my-2" v-on:click="sendToCEO(row._id)">Send To CEO</button>
+                            <a class="btn btn-primary my-2" v-bind:href="'/admin/message/'+row.owners+'/'+row._id+'/reject'">Reject</a>
+                            <a v-bind:href="'/admin/places/'+row._id+'/edit'" class="btn my-2">View Data</a>
                     </td>
                 </tr>
             </template>

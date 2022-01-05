@@ -63,7 +63,9 @@ const schema = new Schema({
     payment_detail: [paymentDetailSchema],
     views: Number,
     is_requested : Boolean,
-    is_rejected : String
+    is_rejected : String,
+    to_ceo : Boolean,
+    is_visited : Boolean
 }, {timestamps: {}});
 
 schema.index({name: 'text', address: 'text', city: 'text'})

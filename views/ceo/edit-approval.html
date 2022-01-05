@@ -1,0 +1,26 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container">
+    <h1>Edit Approval</h1>
+    <div class="columns" id="form-approval">
+        <div class="column col-2" style="border-right: 1px solid #eee;">
+            <%- include('./partials/approval_form_nav.html') %>
+        </div>
+        <div class="column col-10">
+            <%- include('./partials/approval_forms/general.html') %>
+            <%- include('./partials/approval_forms/owner.html') %>
+            <div style="clear: both;"></div>
+            <div style="float:right; margin-top: 10px;">
+                <button class="btn" v-on:click="onCancel()">Cancel</button>
+                <!-- <button class="btn" v-on:click="onSave(false)">Save</button> -->
+                <button class="btn" v-on:click="onSave(true)">Save & Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var placeId = '<%= id %>';
+    var ownerId = "";
+</script>
+<%- include('./partials/footer.html') %>
