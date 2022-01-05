@@ -1,0 +1,23 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container" style="margin-top: 10px;">
+  <a class="btn btn-primary my-2" href="/panel/owner/message/new">New Message</a>
+    <div class="columns mt-2" id="list-message">
+        <div class="column col-2" style="border-right: 1px solid #eee;">
+            <%- include('./partials/list_message_nav.html') %>
+        </div>
+        <div class="column col-10">
+            <%- include('./partials/list_messages/inbox.html') %>
+            <%- include('./partials/list_messages/outbox.html') %>
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+</div>
+<% if(locals.ceo){%>
+<script>
+    var ceo = <%- JSON.stringify(ceo) %>;
+</script>
+<%}%>
+<%- include('./partials/footer.html') %>

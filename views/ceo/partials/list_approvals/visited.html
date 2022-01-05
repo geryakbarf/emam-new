@@ -1,0 +1,29 @@
+<div v-if="sideMenuIndex == 1">
+    <h3 class="mt-2">Visited Places</h3>
+    <div class="columns" style="margin: 10px 0;">
+        <div class="column col-2">
+            <div class="form-group">
+                <label class="form-label" for="filter">Filter</label>
+                <input class="form-input" type="text" id="filter" placeholder="filter..." v-model="filter">
+            </div>
+        </div>
+    </div>
+    <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+        <datatable :columns="approvalCols" :data="approvals_visited" class="table" :filter="filter">
+            <template scope="{ row, column, index }">
+                <tr>
+                    <td class="text-center">{{ index + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.idx }}</td>
+                    <td v-if="row.is_rejected == 'true'">Rejected</td>
+                    <td v-if="row.is_rejected == 'false'">Accepted</td>
+                    <td v-if="row.is_rejected == '' || !row.is_rejected">Waiting</td>
+                    <td>{{ row.updatedAt }}</td>
+                    <td class="text-center">
+                      <a v-bind:href="'/panel/ceo/places/'+row._id+'/edit'" class="btn my-2">View Data</a>
+                    </td>
+                </tr>
+            </template>
+        </datatable>
+    </div>
+</div>

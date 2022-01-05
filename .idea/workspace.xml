@@ -1,7 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f8dbae7-fd3b-49c6-aaac-22466a65a404" name="Default Changelist" comment="- Joining from another repository" />
+    <list default="true" id="3f8dbae7-fd3b-49c6-aaac-22466a65a404" name="Default Changelist" comment="- Joining from another repository">
+      <change afterPath="$PROJECT_DIR$/middlewares/owner_auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/owner/list_place.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routers/owner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/edit-menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/edit-place.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/new-menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/new-place.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/list_places/all_places.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/list_places/drafted_places.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/list_places/published_places.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/list_places_nav.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/menu_form_nav.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/menu_forms/categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/menu_forms/general.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/menu_forms/options.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/navbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_form_nav.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/banners.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/covid.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/cta.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/descriptions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/facilities.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/galleries.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/general.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/menus.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/operational_times.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/options.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/owner.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/payment_category.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/partials/place_forms/qr.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/owner/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mongo/places.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/places.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/v1/owners.js" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/v1/owners.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin/form_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/form_menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin/form_owner.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/form_owner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin/form_place.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/form_place.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/edit-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/edit-menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/edit-place.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/edit-place.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/new-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/new-menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/new-place.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/new-place.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/footer.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +59,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,19 +81,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/owner" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emam-baru\views\owner" />
+      <recent name="C:\xampp\htdocs\emam-baru\views\owner\partials" />
       <recent name="C:\xampp\htdocs\emam-website\views\admin\partials" />
       <recent name="C:\xampp\htdocs\emam-website\views\admin" />
       <recent name="C:\xampp\htdocs\emam-website\public\js\admin" />
-      <recent name="C:\xampp\htdocs\emam-website\views\admin\partials\place_forms" />
-      <recent name="C:\xampp\htdocs\emam-website\handlers\v1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emam-baru\public\js\owner" />
       <recent name="C:\xampp\htdocs\emam-website\data\mongo" />
     </key>
   </component>
@@ -65,6 +123,9 @@
       <workItem from="1629779128114" duration="5113000" />
       <workItem from="1629814400324" duration="638000" />
       <workItem from="1629815948115" duration="1016000" />
+      <workItem from="1630047633102" duration="3663000" />
+      <workItem from="1630056928314" duration="690000" />
+      <workItem from="1630136813205" duration="12535000" />
     </task>
     <task id="LOCAL-00001" summary="- Perbaikan admin Panel Page List Places">
       <created>1617109483421</created>
@@ -108,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629780458817</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="- Joining from another repository">
+      <created>1630049318320</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1630049318320</updated>
+    </task>
+    <task id="LOCAL-00008" summary="- Joining from another repository">
+      <created>1630049459931</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1630049459931</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +206,7 @@
     <MESSAGE value="- Perbaikan admin Panel Page General Page (Masih perlu ada beberapa perbaikan)" />
     <MESSAGE value="Perbaikan Tampilan Admin Panel (1/2)" />
     <MESSAGE value="- Menambahkan partner pada emam.id" />
+    <MESSAGE value="Fixing" />
     <MESSAGE value="- Joining from another repository" />
     <option name="LAST_COMMIT_MESSAGE" value="- Joining from another repository" />
   </component>

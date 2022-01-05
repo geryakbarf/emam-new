@@ -13,6 +13,8 @@ const placeHandler = require('../handlers/v1/places');
 const menuHandler = require('../handlers/v1/menus');
 const imageHandler = require('../handlers/v1/images');
 const webHandler = require('../handlers/v1/web');
+const approvalHandler = require('../handlers/v1/approvals');
+const messageHandler = require('../handlers/v1/message');
 
 v1.get('/place-categories', placeCatHandler.getAll)
 v1.get('/cuisines', cuisineHandler.getAll)
@@ -20,6 +22,12 @@ v1.get('/payments', paymentHandler.getAll)
 v1.get('/paymentscat', paymentHandler.getPaymentCategory)
 v1.get('/facilities', facilityHandler.getAll)
 v1.get('/covid-protocols', covidHandler.getAll)
+
+v1.get('/message/ceo', messageHandler.getCeoMessage)
+v1.get('/message/admin', messageHandler.getAdminMessage)
+v1.get('/message/owner', messageHandler.getOwnerMessage)
+v1.post('/message', messageHandler.sendMessage)
+v1.get('/message/:id', messageHandler.getOneMessage)
 
 v1.get('/owners', ownerHanlder.getAllOwners)
 v1.post('/owners', ownerHanlder.addOwner)
@@ -50,6 +58,14 @@ v1.post('/upload-image-s3', imageHandler.uploadImageS3)
 v1.delete('/delete-images', imageHandler.deleteImages)
 v1.post('/claim/send-claim', placeHandler.insertClaim)
 v1.post('/tell-us', webHandler.sendEmail)
+
+v1.get('/approvals', approvalHandler.getRequestedPlaces)
+v1.get('/approvals/ceo', approvalHandler.getCeoPlaces)
+v1.put('/approvals/ceo/setvisited', approvalHandler.setVisitedPlace)
+v1.get('/approvals/:id', approvalHandler.getOneRequestedPlace)
+v1.put('/approvals/accept', approvalHandler.acceptRequest)
+v1.put('/approvals/reject', approvalHandler.rejectRequest)
+v1.put('/approvals/sendtoceo', approvalHandler.sendToCeo)
 
 router.use('/v1', v1);
 

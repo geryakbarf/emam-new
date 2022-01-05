@@ -1,0 +1,8 @@
+<ul class="nav">
+    <li v-bind:class="[isActiveSideMenu(0) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(0)">Visit Request {{ approvals.length}}</a>
+    </li>
+    <li v-bind:class="[isActiveSideMenu(1) ? 'active' : '', 'nav-item']">
+        <a href="javascript:void(0)" v-on:click="setSideMenuIndex(1)">Visited Places {{approvals_visited.length}}</a>
+    </li>
+</ul>

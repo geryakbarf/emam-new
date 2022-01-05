@@ -1,0 +1,115 @@
+<div v-show="sideMenuIndex == 4">
+    <h1>Payment Category</h1>
+    <div class="columns">
+        <div class="column col-10">
+            <div class="form-group">
+                <label class="form-label" for="payments">Payments</label>
+                <vue-tags-input
+                        :autocomplete-items="formFieldValues.payments"
+                        :placeholder="'Kartu Kredit'"
+                        :tags="form.payments"
+                        @tags-changed="t => form.payments = t"
+                        v-model="formTmp.payment"/>
+            </div>
+        </div>
+    </div>
+    <div v-if="hasCash">
+        <h2>Cash Condition</h2>
+        <button class="btn" v-on:click="addPaymentDetail('Tunai')">Add Cash Condition</button>
+        <div class="columns" v-for="paycat in form.payment_detail" v-if="paycat.type === 'Tunai'">
+            <div class="column col-10">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatcondition'+paycat.id">Cash Condition*</label>
+                    <input class="form-input" placeholder="*Minimal beli 100.000 dapat cashback 10%" type="text"
+                           v-bind:id="'paycatname'+paycat.id"
+                           v-model="paycat.condition">
+                </div>
+            </div>
+            <div class="column col-1" style="padding-top: 37.5px;">
+                <button class="btn" v-on:click="deletePaymentDetail(paycat.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px" v-if="hasQRIS">
+        <h2>QRIS Options</h2>
+        <button class="btn" v-on:click="addPaymentDetail('QRIS')">Add QRIS Options</button>
+        <div class="columns" v-for="paycat in form.payment_detail" v-if="paycat.type === 'QRIS'">
+            <div class="column col-5">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatname'+paycat.id">QRIS Category Name*</label>
+                    <select class="form-select" v-bind:id="'paycatname'+paycat.id" v-model="paycat.name">
+                        <option disabled selected value="">Choose an option</option>
+                        <option v-bind:value="paycatlist.name" v-for="paycatlist in formFieldValues.paymentscat"
+                                v-if="paycatlist.type == 'QRIS'">{{paycatlist.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="column col-5">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatcondition'+paycat.id">QRIS Condition</label>
+                    <input class="form-input" placeholder="*Minimal total bayar 70.000" type="text"
+                           v-bind:id="'paycatname'+paycat.id"
+                           v-model="paycat.condition">
+                </div>
+            </div>
+            <div class="column col-1" style="padding-top: 37.5px;">
+                <button class="btn" v-on:click="deletePaymentDetail(paycat.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px" v-if="hasDebit">
+        <h2>Debit Options</h2>
+        <button class="btn" v-on:click="addPaymentDetail('Kartu Debit')">Add Debit Options</button>
+        <div class="columns" v-for="paycat in form.payment_detail" v-if="paycat.type === 'Kartu Debit'">
+            <div class="column col-5">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatname'+paycat.id">Debit Category Name</label>
+                    <!--                    <select class="form-select" v-bind:id="'paycatname'+paycat.id" v-model="paycat.name">-->
+                    <!--                        <option disabled selected value="">Choose an option</option>-->
+                    <!--                        <option v-bind:value="paycatlist.name" v-for="paycatlist in formFieldValues.paymentscat"-->
+                    <!--                                v-if="paycatlist.type == 'Kartu Debit'">{{paycatlist.name}}-->
+                    <!--                        </option>-->
+                    <!--                    </select>-->
+                    <input class="form-input" placeholder="*BNI" v-binf:id="'paycatname'+paycat.id"
+                           v-model="paycat.name">
+                </div>
+            </div>
+            <div class="column col-5">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatcondition'+paycat.id">Debit Condition</label>
+                    <input class="form-input" placeholder="*Minimal total bayar 70.000" type="text"
+                           v-bind:id="'paycatname'+paycat.id"
+                           v-model="paycat.condition">
+                </div>
+            </div>
+            <div class="column col-1" style="padding-top: 37.5px;">
+                <button class="btn" v-on:click="deletePaymentDetail(paycat.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px" v-if="hasCredit">
+        <h2>Credit Card Options</h2>
+        <button class="btn" v-on:click="addPaymentDetail('Kartu Kredit')">Add Credit Options</button>
+        <div class="columns" v-for="paycat in form.payment_detail" v-if="paycat.type === 'Kartu Kredit'">
+            <div class="column col-5">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatname'+paycat.id">Credit Card Name</label>
+                    <input class="form-input" placeholder="*BNI" type="text" v-bind:id="'paycatname'+paycat.id"
+                           v-model="paycat.name">
+                </div>
+            </div>
+            <div class="column col-5">
+                <div class="form-group">
+                    <label class="form-label" v-bind:for="'paycatcondition'+paycat.id">Credit Card Condition*</label>
+                    <input class="form-input" placeholder="*Minimal total bayar 70.000" type="text"
+                           v-bind:id="'paycatname'+paycat.id"
+                           v-model="paycat.condition">
+                </div>
+            </div>
+            <div class="column col-1" style="padding-top: 37.5px;">
+                <button class="btn" v-on:click="deletePaymentDetail(paycat.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

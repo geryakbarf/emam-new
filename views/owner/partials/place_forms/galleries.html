@@ -1,0 +1,41 @@
+<div v-if="sideMenuIndex == 7">
+    <h1>Galleries</h1>
+    <button @click="addGalleryGroup('')" class="btn btn-primary">Add Category</button>
+    <div class="columns" v-for="gal in formTmp.galleries">
+        <div class="column col-4">
+            <div class="form-group">
+                <label class="form-label">Category name</label>
+                <!--                <input type="text" class="form-input" placeholder="Interior" v-model="gal.category">-->
+                <select class="form-select" v-model="gal.category">
+                    <option disabled selected value="">Choose an option</option>
+                    <option value="Indoor Area">Indoor Area</option>
+                    <option v-for="faci in form.facilities" v-bind:value="faci.name">{{faci.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-1" style="padding-top: 35px;">
+            <button class="btn btn-primary" v-on:click="deleteGalleryGroup(gal.id)">Delete</button>
+        </div>
+        <div class="column col-12" style="margin-top: 10px">
+            <button class="btn btn-primary btn-upload" style="margin-bottom: 10px;">
+                <label v-bind:for="'iu-'+gal.id">Click me to upload image</label>
+            </button>
+            <input multiple style="display: none;" type="file"
+                   v-bind:id="'iu-'+gal.id" v-on:change="addGalleryFile($event, gal.id)">
+            <div v-bind:class="[gal.images.length > 0 ? '':'flex-center','upload-zone']"
+                 v-cloak v-on:dragover.prevent
+                 v-on:drop.prevent="addGalleryFile($event, gal.id)">
+                <span v-if="gal.images.length == 0">Drop file here to upload</span>
+                <div v-if="gal.images.length > 0">
+                    <div class="columns">
+                        <div class="column col-2" style="text-align: center;" v-for="(img, id) in gal.images">
+                            <img style="width: 100%;height: 100px;" v-bind:src="img.imgData">
+                            <a href="javascript:void(0)" v-on:click="deleteGalleryFile(gal.id,id)">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div v-if="sideMenuIndex == 1">
+    <h1>Facilities</h1>
+    <div class="columns">
+        <div class="column col-3" v-for="facility in formFieldValues.facilities">
+            <div class="form-group">
+                <label class="form-switch">
+                  <input type="checkbox" v-on:click="onFacilityChecked(facility)" v-bind:checked="isFacilityChecked(facility)">
+                  <i class="form-icon"></i> {{ facility }}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

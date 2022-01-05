@@ -1,0 +1,18 @@
+<div v-show="sideMenuIndex == 1">
+    <h1>Menu Categories</h1>
+    <button class="btn" v-on:click="toggleCatEditMode">Edit mode</button>
+    <button class="btn" v-show="catForm.editMode" v-on:click="addCategory">Add Category</button>
+    <button class="btn" v-show="catForm.editMode" v-on:click="saveCategory">Save Category</button>
+
+    <div class="columns" v-for="type in formFieldValues.menu_categories">
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" v-bind:for="'catname'+type.id">Category Name*</label>
+                <input class="form-input" type="text" v-bind:id="'catname'+type.id" v-model="type.name" placeholder="Breakfast" v-bind:readonly="!catForm.editMode">
+            </div>
+        </div>
+        <div class="column col-6" style="padding-top: 37.5px;" v-show="catForm.editMode">
+            <button class="btn" v-on:click="deleteCategory(type.id)">Delete</button>
+        </div>
+    </div>
+</div>

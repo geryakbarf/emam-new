@@ -1,0 +1,14 @@
+<div v-if="sideMenuIndex == 1">
+    <h1>List Restaurant</h1>
+    <div style="max-height: 400px;overflow-y: auto;overflow-x: hidden;">
+        <datatable :columns="placeCols" :data="placeForm" :filter="filter" class="table">
+            <template scope="{ row, column, index }">
+                <tr>
+                    <td class="text-center">{{ index + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td> {{row.views}}</td>
+                </tr>
+            </template>
+        </datatable>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<%- include('./partials/header.html') %>
+<%- include('./partials/navbar.html') %>
+
+<div class="container">
+    <h1>New Message</h1>
+    <div class="columns" id="form-message">
+      <div class="column col-10">
+        <% if(locals.id){ %>
+          <div class="form-group">
+            <label class="form-label" for="receiver">Receiver</label>
+            <input class="form-input" type="text" id="receiver" v-model="receiverName" required
+                   placeholder="Request Rejection" readonly>
+          </div>
+          <% } else { %>
+            <div class="form-group">
+                <label class="form-label" for="receiver">Receiver</label>
+                <select class="form-select" id="receiver" v-model="form.receiver" required>
+                    <option value="" selected disabled>Select Receiver</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+            <% } %>
+      </div>
+      <div class="column col-10">
+          <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input class="form-input" type="text" id="subject" v-model="form.subject" required
+                     placeholder="Enter your Subject">
+          </div>
+      </div>
+        <div class="column col-10">
+          <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea v-model="form.message" id="message" class="form-input"
+                        placeholder="Enter Your Message Here" rows="5"></textarea>
+          </div>
+            <div style="clear: both;"></div>
+            <div style="float:right; margin-top: 10px;">
+                <button class="btn" v-on:click="onCancel()">Cancel</button>
+                <!-- <button class="btn" v-on:click="onSave(false)">Save</button> -->
+                <button class="btn" v-on:click="onSave(true)" :disabled="isLoading()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+<% if(locals.owner){%>
+<script>
+    var ceo = "";
+    var admin = "";
+    var owner = <%- JSON.stringify(owner) %>;
+</script>
+<%}%>
+<% if(locals.id){%>
+<script>
+    var id = <%- JSON.stringify(id) %>;
+    var placeId = <%- JSON.stringify(place) %>;
+    var subject = <%- JSON.stringify(subject) %>;
+</script>
+<%} else {%>
+  <script>
+      var id = "";
+      var placeId = "";
+      var subject = "";
+  </script>
+<%}%>
+<%- include('./partials/footer.html') %>

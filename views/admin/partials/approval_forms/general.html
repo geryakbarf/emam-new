@@ -1,0 +1,140 @@
+<div v-show="sideMenuIndex == 0">
+    <h1>General</h1>
+    <div class="columns">
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="name">Place Name*</label>
+                <input class="form-input" id="name" placeholder="Ex: Kogarashi cafe" required type="text"
+                       v-model="form.name">
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="slug">Slug*</label>
+                <input class="form-input" id="slug" placeholder="kogarasi-cafe" readonly required type="text"
+                       v-model="form.slug">
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="city">City*</label>
+                <select class="form-select" id="city" required v-model="form.city">
+                    <option selected value="" disabled>Choose an option</option>
+                    <option value="bandung">Bandung</option>
+                    <option value="Jakarta">Jakarta</option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="address">Address*</label>
+                <input class="form-input" id="address" placeholder="Ex: Jln. XXXX" required type="text"
+                       v-model="form.address">
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="categories">Categories*</label>
+                <vue-tags-input
+                        :autocomplete-items="formFieldValues.place_categories"
+                        :placeholder="'Cafe'"
+                        :tags="form.categories"
+                        @tags-changed="t => form.categories = t"
+                        v-model="formTmp.place_categories"/>
+            </div>
+        </div>
+
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="payments">Payments</label>
+                <vue-tags-input
+                        :autocomplete-items="formFieldValues.payments"
+                        :placeholder="'Kartu Kredit'"
+                        :tags="form.payments"
+                        @tags-changed="t => form.payments = t"
+                        v-model="formTmp.payment"/>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="parkir">Parkir*</label>
+                <select class="form-select" id="parkir" required v-model="form.parkir">
+                    <option selected value="">Choose an option</option>
+                    <option v-bind:value="parkir.id" v-for="parkir in formFieldValues.parkirs">{{parkir.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label">Photo</label>
+                <input id="photo" style="display:none;" type="file" v-on:change="onPhotoChange"/>
+                <button class="btn btn-primary btn-upload">
+                    <label for="photo">Click me to upload image</label>
+                </button>
+                <br/>
+                <br/>
+                <img ref="photo" v-show="formTmp.photo" width="200">
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="contact">Contact Type*</label>
+                <select class="form-select" id="contact" v-model="form.contactType">
+                    <option selected value="" disabled>Choose an option</option>
+                    <option value="022">022</option>
+                    <option value="+62">+62</option>
+                </select>
+            </div>
+        </div>
+        <div class="column col-6">
+            <div class="form-group">
+                <label class="form-label" for="contact">Contact Number*</label>
+                <input class="form-input" id="contactNumber" placeholder="Ex: 85156" required type="number"
+                       v-model="form.contactNumber">
+            </div>
+        </div>
+        <div class="column col-12">
+            <div class="columns">
+                <div class="column col-3">
+                    <div class="form-group">
+                        <label class="form-switch">
+                            <input type="checkbox" v-model="form.is_draft">
+                            <i class="form-icon"></i> Draft
+                        </label>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="form-group">
+                        <label class="form-switch">
+                            <input type="checkbox" v-model="form.is_partner">
+                            <i class="form-icon"></i> Partner
+                        </label>
+                    </div>
+                </div>
+                <div class="column col-3">
+                    <div class="form-group">
+                        <label class="form-switch">
+                            <input type="checkbox" v-model="form.is_halal">
+                            <i class="form-icon"></i> Halal
+                        </label>
+                    </div>
+                </div>
+                <div class="column col-3">
+                    <div class="form-group">
+                        <label class="form-switch">
+                            <input type="checkbox" v-model="form.is_sticker">
+                            <i class="form-icon"></i> QR Sticker
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="column col-12">
+            <div class="form-group">
+                <label class="form-label" for="description">Description*</label>
+                <textarea v-model="form.description" id="description" class="form-input" placeholder="Tell about your place" rows="5"></textarea>
+            </div>
+        </div> -->
+    </div>
+</div>
