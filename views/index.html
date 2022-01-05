@@ -49,57 +49,57 @@
                             </div>
                         </div>
                     </section>
-                    <section class="section-tempatmakan row justify-content-center">
-                        <div class="container">
-                            <div class="row">
-                                <h3 class="ml-2 txt-h-title-tempatmakan">Partner emam.id</h3>
-                                <a class="ml-auto mr-4 mt-2 txt-lihat-semua" href="/partner">
-                                    <p>Lihat Semua</p>
-                                </a>
-                            </div>
-                            <div class="row">
-                                <% if(locals.partner){ %>
-                                <% for(data of partner.places){ %>
-                                <% for(place of data){ %>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-1 card-container">
-                                    <div class="card-group" style="height: 100%;">
-                                        <div class="layout-btn-absolute">
-                                            <!-- <div class="btn-icon inlineblock mx-1">
-                                <img src="/assets/images/icon/emam-host-save-default.svg" alt="save button">
-                            </div> -->
-                                            <div class="btn-icon inlineblock mx-1">
-                                                <img data-is-liked="<%= place.is_liked %>" onclick="onWistListClicked('<%= place._id %>',this)" src="/assets/images/icon/emam-host-like-<%= place.is_liked? 'active': 'default' %>.svg" alt="like button">
-                                            </div>
-                                        </div>
-                                        <a href="/p/<%= place.slug %>">
-                                            <div class="card-layout">
-                                                <div class="card-box">
-                                                    <div class="img-box">
-                                                        <img alt="Photo Tempat <%= place.name %>"
-                                                             class="img-tempatmakan"
-                                                             src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>" />
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <h4 class="txt-h-nama-tempatmakan">
-                                                            <%= place.name %>
-                                                        </h4>
-                                                        <p class="txt-alamat-tempatmakan">
-                                                            <%= place.address %>
-                                                        </p>
-                                                        <!-- <div class="txt-link-detail-tempatmakan">Info Tempat</div> -->
-                                                        <!-- <img class="logoemamfoodlist" src="images/logo/logo2.png" alt="logo emam"> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <% } %>
-                                <% } %>
-                                <% } %>
-                            </div>
-                        </div>
-                    </section>
+<!--                    <section class="section-tempatmakan row justify-content-center">-->
+<!--                        <div class="container">-->
+<!--                            <div class="row">-->
+<!--                                <h3 class="ml-2 txt-h-title-tempatmakan">Partner emam.id</h3>-->
+<!--                                <a class="ml-auto mr-4 mt-2 txt-lihat-semua" href="/partner">-->
+<!--                                    <p>Lihat Semua</p>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <% if(locals.partner){ %>-->
+<!--                                <% for(data of partner.places){ %>-->
+<!--                                <% for(place of data){ %>-->
+<!--                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-1 card-container">-->
+<!--                                    <div class="card-group" style="height: 100%;">-->
+<!--                                        <div class="layout-btn-absolute">-->
+<!--                                            &lt;!&ndash; <div class="btn-icon inlineblock mx-1">-->
+<!--                                <img src="/assets/images/icon/emam-host-save-default.svg" alt="save button">-->
+<!--                            </div> &ndash;&gt;-->
+<!--                                            <div class="btn-icon inlineblock mx-1">-->
+<!--                                                <img data-is-liked="<%= place.is_liked %>" onclick="onWistListClicked('<%= place._id %>',this)" src="/assets/images/icon/emam-host-like-<%= place.is_liked? 'active': 'default' %>.svg" alt="like button">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <a href="/p/<%= place.slug %>">-->
+<!--                                            <div class="card-layout">-->
+<!--                                                <div class="card-box">-->
+<!--                                                    <div class="img-box">-->
+<!--                                                        <img alt="Photo Tempat <%= place.name %>"-->
+<!--                                                             class="img-tempatmakan"-->
+<!--                                                             src="<%= place.photo.path ? place.photo.path : '/assets/images/emam-menu-no-photos.jpg' %>" />-->
+<!--                                                    </div>-->
+<!--                                                    <div class="card-body">-->
+<!--                                                        <h4 class="txt-h-nama-tempatmakan">-->
+<!--                                                            <%= place.name %>-->
+<!--                                                        </h4>-->
+<!--                                                        <p class="txt-alamat-tempatmakan">-->
+<!--                                                            <%= place.address %>-->
+<!--                                                        </p>-->
+<!--                                                        &lt;!&ndash; <div class="txt-link-detail-tempatmakan">Info Tempat</div> &ndash;&gt;-->
+<!--                                                        &lt;!&ndash; <img class="logoemamfoodlist" src="images/logo/logo2.png" alt="logo emam"> &ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <% } %>-->
+<!--                                <% } %>-->
+<!--                                <% } %>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </section>-->
                     <section class="section-tempatmakan row justify-content-center" id="detail-foodlist">
                         <div class="container">
                             <div class="row">
